@@ -4,6 +4,10 @@ User-visible changes are recorded here. This repository is being prepared for it
 
 ## Unreleased
 
+### Fixed
+
+- Arrowheads now follow the source-to-formula direction and meet the incoming edge of the target cell. Short same-sheet connections no longer overshoot and turn back inside the cell. Contained ranges and self references keep a nonzero loop.
+
 ### Added
 
 - A single pasteable VBA module that analyzes the active workbook or a file selected with the Windows file picker and exports an interactive HTML map.

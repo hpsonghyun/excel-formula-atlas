@@ -1,11 +1,11 @@
 {
-  "version": "0.1.0",
-  "bytes": 301197,
-  "lines": 3396,
+  "version": "0.1.1",
+  "bytes": 302493,
+  "lines": 3403,
   "procedures": 106,
   "maxLineLength": 366,
-  "sha256": "993760e77b62626b6671e7a5840f4b0901427b284783f4baa9825720adf85601",
-  "embeddedHtmlSha256": "610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745",
+  "sha256": "ecdb0e0d1179e0603bccf9b9686b4bfdc736adee4ff80afa39cb132856c3727e",
+  "embeddedHtmlSha256": "d6574b459c619714c445021b2705f3ec0f250ac5229ad6ac16f6db8a757556c3",
   "embeddedBridgeSha256": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
   "sourceHashes": {
     "src/navigation/navigation_bridge.ps1": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
@@ -16,10 +16,10 @@
     "src/vba/SpatialNativeMap.bas": "829370345d8edc4248da8779aad187d8f19a999d25ab533cbcb6184c9e07a374",
     "src/vba/SpatialNavigation.bas": "58e25c40c00bc2f8daf60098ba7a82131637d4432957c19b58c339d2cc0f7c69",
     "src/vba/SpatialSnapshot.bas": "97374d05e9987c1026c0b3b9a7b1de77cabc8aef96bad8bf084556289391446e",
-    "src/viewer/template.html": "610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745",
+    "src/viewer/template.html": "d6574b459c619714c445021b2705f3ec0f250ac5229ad6ac16f6db8a757556c3",
     "scripts/build.py": "cb314916b72770010382195fa84be4603e3ad0c7480849b7a1478368b0ac77fa",
     "scripts/progress_instrumentation.py": "9b41f267ccc1930bedebeef8ecc350faa4d7f8f34ced4e00310371f1fc2f9c32",
-    "VERSION": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67",
+    "VERSION": "80447316529fc62014fbaa047fb67c51ac30e32830cda370405349d8d66d196c",
     "LICENSE": "701805daeb43228b40cf7bb26886d55123c1514446990fecd84cf65f78be71cb"
   }
 }

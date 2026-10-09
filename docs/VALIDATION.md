@@ -1,6 +1,6 @@
 # Validation status
 
-This is a local, unpublished **0.1.0 release candidate**. Browser and artifact checks passed. Native Excel macro execution and the complete browser-to-Excel navigation path still require a Windows Excel verification run before a fully verified release.
+This is a local, unpublished **0.1.1 release candidate**. Browser and artifact checks passed. Native Excel macro execution and the complete browser-to-Excel navigation path still require a Windows Excel verification run against this exact TXT before a fully verified release.
 
 ## Exact candidate
 
@@ -8,11 +8,17 @@ Checked on 2026-10-09. SHA-256 identifies the bytes inspected:
 
 | Artifact | SHA-256 |
 | --- | --- |
-| `dist/ExcelFormulaAtlas.txt` | `993760e77b62626b6671e7a5840f4b0901427b284783f4baa9825720adf85601` |
-| `src/viewer/template.html` | `610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745` |
+| `dist/ExcelFormulaAtlas.txt` | `ecdb0e0d1179e0603bccf9b9686b4bfdc736adee4ff80afa39cb132856c3727e` |
+| `src/viewer/template.html` | `d6574b459c619714c445021b2705f3ec0f250ac5229ad6ac16f6db8a757556c3` |
 | `examples/OperationsModel.xlsx` | `74f390d71714e76de8d5a0a3807df78cde68e8b223a12aa2ccc73a12c37e337a` |
 
 Website downloads are byte-identical to their source artifacts. The TXT includes the complete MIT notice, analyzer, viewer, and navigation helper. It is one standard VBA module; no companion source files are needed by the macro user.
+
+## Arrowhead correction in 0.1.1
+
+The shared connection geometry now places the tip just inside the target's incoming boundary and aligns the final curve tangent with source-to-target flow. Short same-sheet links no longer overshoot the target and turn back. Overlapping rectangles, contained ranges and self references use a nonzero top-entry loop. A synthetic two-sheet reproduction was compared before and after in a browser; 32 direction, adjacency and overlap cases passed finite-coordinate, target-containment and terminal-direction checks. Visible and clickable connection paths remain identical.
+
+The user reported that the prior candidate's functionality worked and requested this arrowhead correction. That report did not include an exact TXT hash or full verification checklist. The updated TXT has not been executed in desktop Excel during this patch check.
 
 ## Checks completed
 
@@ -25,7 +31,7 @@ The repository's Python test suite passed **35 checks**: 21 package checks, 7 sy
 | Synthetic workbook | All 197 formulas were recalculated with the artifact engine and compared with independently computed expectations. The saved XLSX formulas and cached values were also checked. Collection rate 80% to 90% changed closing cash from 48,267,840 to 51,389,420 while operating profit stayed unchanged; the input and results were restored before saving. |
 | Workbook integrity | Seven demo contract tests passed: workbook/download equality, plain XLSX with no VBA or external links, English synthetic data, formula/cache agreement, snapshot formulas, graph endpoint integrity, and the closing-cash result. All eight worksheet renders were visually reviewed. |
 | Browser interactions | Native mouse actions passed search, single-area selection, larger-area selection, right-button pan, and line selection. Detail-cell clicks, upstream depth, and English/Korean changes passed. Selecting the cash area produced 10 seeds, 21 upstream items, and 5 related sheets. Right-button pan preserved the selection. |
-| Loading | The 8-sheet example, an 80-sheet stress fixture, and a one-sheet 20,000-cell fixture completed at 100%. The loading panel was visible on the first observed animation frame, counters stayed within their totals, percentages were monotonic, drawing yielded between chunks, and the panel closed when ready. Invalid embedded JSON kept the error panel visible with an explanation. |
+| Loading | The 8-sheet example and language changes completed with the loading panel closed in 0.1.1. Prior 0.1.0 checks also covered an 80-sheet stress fixture, a one-sheet 20,000-cell fixture, first-paint visibility, monotonic counters, chunked drawing and invalid-JSON error handling. Those stress checks were not repeated for this connection-geometry-only patch. |
 | Introduction | The final page rendered in a browser, its embedded map opened and selected `Summary!P30`, all four screenshot placements decoded, and macro-name copy worked. Desktop and 390/320-pixel layouts were checked for horizontal overflow. No HTTP requests or browser errors occurred while loading and using the preview. |
 
 Browser checks loaded the exact self-authored HTML into an isolated browser page. They did not start a local HTTP server. The sample map has no live Excel connection. Its snapshot is a translated, preserved synthetic fixture cross-checked against the included English workbook, rather than a fresh export from the latest VBA.
