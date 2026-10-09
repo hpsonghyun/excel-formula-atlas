@@ -1,0 +1,20 @@
+* text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+docs/.nojekyll text eol=lf
+VERSION text eol=lf
+LICENSE text eol=lf
+*.mjs text eol=lf
+*.bas text eol=lf
+*.txt text eol=crlf
+# Keep the pasteable distribution's CRLF bytes and accept CR at end of line.
+dist/*.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/downloads/*.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.ps1 text eol=lf
+*.py text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.xlsx binary
+*.png binary

@@ -1,0 +1,5233 @@
+{
+  "version": 1,
+  "title": "October operations at a fictional manufacturer",
+  "synthetic": true,
+  "description": "An eight-sheet synthetic model linking sales, production, purchasing, costs and cash for four products, three materials and sixteen orders.",
+  "workbookFile": "OperationsModel.xlsx",
+  "sheetOrder": [
+    "Summary",
+    "Assumptions",
+    "Sales",
+    "Costing",
+    "Purchasing",
+    "Inventory",
+    "Orders",
+    "Catalog"
+  ],
+  "regions": [
+    {
+      "sheet": "Assumptions",
+      "range": "D6:F14",
+      "title": "Cash and operating assumptions",
+      "description": "Enter collection and payment rates and opening cash here.",
+      "role": "input"
+    },
+    {
+      "sheet": "Assumptions",
+      "range": "D21:F24",
+      "title": "Opening material stock",
+      "description": "Purchasing deducts this stock from the material requirement.",
+      "role": "input"
+    },
+    {
+      "sheet": "Catalog",
+      "range": "H8:O12",
+      "title": "Product specifications",
+      "description": "List prices, material usage, labor costs and finished-goods inventory targets.",
+      "role": "input"
+    },
+    {
+      "sheet": "Catalog",
+      "range": "C28:G31",
+      "title": "Material specifications",
+      "description": "Costing and Purchasing use the same material prices.",
+      "role": "input"
+    },
+    {
+      "sheet": "Orders",
+      "range": "B7:K23",
+      "title": "Sixteen customer orders",
+      "description": "Deduct returned units and apply each order’s discount to the list price.",
+      "role": "source"
+    },
+    {
+      "sheet": "Sales",
+      "range": "E8:L12",
+      "title": "Sales and collections by product",
+      "description": "Aggregate order revenue and split it into cash and receivables using the collection rate.",
+      "role": "calculation"
+    },
+    {
+      "sheet": "Sales",
+      "range": "P25:Q29",
+      "title": "Total revenue",
+      "description": "Current collections feed the cash calculation in Summary.",
+      "role": "summary"
+    },
+    {
+      "sheet": "Costing",
+      "range": "B11:H15",
+      "title": "Product unit cost",
+      "description": "Multiply material usage by unit price and add labor per unit.",
+      "role": "calculation"
+    },
+    {
+      "sheet": "Costing",
+      "range": "P27:R36",
+      "title": "Cost of goods sold and gross profit",
+      "description": "Recognize only the cost of units sold in profit.",
+      "role": "summary"
+    },
+    {
+      "sheet": "Inventory",
+      "range": "J8:P12",
+      "title": "Required production calculation",
+      "description": "Add sales and safety stock, then deduct opening finished goods to obtain required production.",
+      "role": "calculation"
+    },
+    {
+      "sheet": "Inventory",
+      "range": "C28:G36",
+      "title": "Inventory value and labor",
+      "description": "Closing inventory remains an asset while production labor is paid from current cash.",
+      "role": "summary"
+    },
+    {
+      "sheet": "Purchasing",
+      "range": "O8:S12",
+      "title": "Material requirement by product",
+      "description": "Multiply finished production units by material usage per product.",
+      "role": "calculation"
+    },
+    {
+      "sheet": "Purchasing",
+      "range": "C22:K25",
+      "title": "Purchase calculation",
+      "description": "Add safety stock to required units, deduct stock on hand, then apply the purchase price.",
+      "role": "calculation"
+    },
+    {
+      "sheet": "Purchasing",
+      "range": "P26:Q28",
+      "title": "Total material payments",
+      "description": "Apply the current payment rate to purchases and send the resulting cash outflow to Summary.",
+      "role": "summary"
+    },
+    {
+      "sheet": "Summary",
+      "range": "B7:E11",
+      "title": "Product sales and profit",
+      "description": "Combine product results from Sales and Costing in one view.",
+      "role": "output"
+    },
+    {
+      "sheet": "Summary",
+      "range": "H8:K13",
+      "title": "Monthly profit",
+      "description": "Deduct cost of goods sold and fixed operating costs from revenue.",
+      "role": "output"
+    },
+    {
+      "sheet": "Summary",
+      "range": "M23:P35",
+      "title": "Closing cash calculation",
+      "description": "Combine inflows and outflows to calculate closing cash in P30.",
+      "role": "output"
+    }
+  ],
+  "cells": [
+    {
+      "sheet": "Assumptions",
+      "address": "D3",
+      "label": "",
+      "value": "October 2026 operating assumptions",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D4",
+      "label": "",
+      "value": "All data is synthetic. Monetary amounts are in KRW.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D7",
+      "label": "Model month",
+      "value": "Model month",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E7",
+      "label": "Model month",
+      "value": "Month",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F7",
+      "label": "Model month",
+      "value": "2026-10",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D8",
+      "label": "Current sales collection rate",
+      "value": "Current sales collection rate",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E8",
+      "label": "Current sales collection rate",
+      "value": "%",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F8",
+      "label": "Current sales collection rate",
+      "value": 0.8,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D9",
+      "label": "Prior receivables collected",
+      "value": "Prior receivables collected",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E9",
+      "label": "Prior receivables collected",
+      "value": "KRW",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F9",
+      "label": "Prior receivables collected",
+      "value": 8500000,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D10",
+      "label": "Current purchase payment rate",
+      "value": "Current purchase payment rate",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E10",
+      "label": "Current purchase payment rate",
+      "value": "%",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F10",
+      "label": "Current purchase payment rate",
+      "value": 0.65,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D11",
+      "label": "Monthly fixed operating costs",
+      "value": "Monthly fixed operating costs",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E11",
+      "label": "Monthly fixed operating costs",
+      "value": "KRW",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F11",
+      "label": "Monthly fixed operating costs",
+      "value": 4200000,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D12",
+      "label": "Capital expenditure paid",
+      "value": "Capital expenditure paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E12",
+      "label": "Capital expenditure paid",
+      "value": "KRW",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F12",
+      "label": "Capital expenditure paid",
+      "value": 2800000,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D13",
+      "label": "Opening cash",
+      "value": "Opening cash",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E13",
+      "label": "Opening cash",
+      "value": "KRW",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F13",
+      "label": "Opening cash",
+      "value": 32000000,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D14",
+      "label": "Minimum cash balance",
+      "value": "Minimum cash balance",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E14",
+      "label": "Minimum cash balance",
+      "value": "KRW",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F14",
+      "label": "Minimum cash balance",
+      "value": 12000000,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D20",
+      "label": "",
+      "value": "Opening material inventory",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D22",
+      "label": "",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E22",
+      "label": "Opening material units",
+      "value": 45,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F22",
+      "label": "Material safety stock",
+      "value": 20,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D23",
+      "label": "",
+      "value": "R02",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E23",
+      "label": "Opening material units",
+      "value": 7,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F23",
+      "label": "Material safety stock",
+      "value": 4,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "D24",
+      "label": "",
+      "value": "R03",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "E24",
+      "label": "Opening material units",
+      "value": 12,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "F24",
+      "label": "Material safety stock",
+      "value": 6,
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M7",
+      "label": "",
+      "value": "Model conventions",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M9",
+      "label": "",
+      "value": "Revenue excludes returned units.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M10",
+      "label": "",
+      "value": "Discounts are entered on each order.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M11",
+      "label": "",
+      "value": "Unsold production remains in inventory.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M12",
+      "label": "",
+      "value": "Cost of goods sold follows units sold.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M13",
+      "label": "",
+      "value": "All current production labor is paid this month.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M14",
+      "label": "",
+      "value": "65% of material purchases is paid this month.",
+      "formula": ""
+    },
+    {
+      "sheet": "Assumptions",
+      "address": "M15",
+      "label": "",
+      "value": "VAT, income tax and depreciation are excluded.",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H3",
+      "label": "",
+      "value": "Product and material catalog",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H4",
+      "label": "",
+      "value": "Synthetic prices, material usage, labor costs and inventory targets.",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H9",
+      "label": "Product code",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "I9",
+      "label": "Product name",
+      "value": "Sensor mount",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "J9",
+      "label": "List price",
+      "value": 85000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "K9",
+      "label": "Material code",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "L9",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "M9",
+      "label": "Labor per unit",
+      "value": 12000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "N9",
+      "label": "Safety stock",
+      "value": 20,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "O9",
+      "label": "Opening stock",
+      "value": 35,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H10",
+      "label": "Product code",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "I10",
+      "label": "Product name",
+      "value": "Mobile stand",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "J10",
+      "label": "List price",
+      "value": 140000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "K10",
+      "label": "Material code",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "L10",
+      "label": "Material units per product",
+      "value": 3,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "M10",
+      "label": "Labor per unit",
+      "value": 18000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "N10",
+      "label": "Safety stock",
+      "value": 12,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "O10",
+      "label": "Opening stock",
+      "value": 18,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H11",
+      "label": "Product code",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "I11",
+      "label": "Product name",
+      "value": "Control box",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "J11",
+      "label": "List price",
+      "value": 220000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "K11",
+      "label": "Material code",
+      "value": "R02",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "L11",
+      "label": "Material units per product",
+      "value": 1,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "M11",
+      "label": "Labor per unit",
+      "value": 26000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "N11",
+      "label": "Safety stock",
+      "value": 10,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "O11",
+      "label": "Opening stock",
+      "value": 14,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "H12",
+      "label": "Product code",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "I12",
+      "label": "Product name",
+      "value": "Weatherproof enclosure",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "J12",
+      "label": "List price",
+      "value": 310000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "K12",
+      "label": "Material code",
+      "value": "R03",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "L12",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "M12",
+      "label": "Labor per unit",
+      "value": 34000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "N12",
+      "label": "Safety stock",
+      "value": 8,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "O12",
+      "label": "Opening stock",
+      "value": 10,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "C26",
+      "label": "",
+      "value": "Material prices and suppliers",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "C29",
+      "label": "",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "D29",
+      "label": "",
+      "value": "Aluminum frame",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "E29",
+      "label": "",
+      "value": 18000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "F29",
+      "label": "",
+      "value": 7,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "G29",
+      "label": "",
+      "value": "North Metals",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "C30",
+      "label": "",
+      "value": "R02",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "D30",
+      "label": "",
+      "value": "Control module",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "E30",
+      "label": "",
+      "value": 76000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "F30",
+      "label": "",
+      "value": 14,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "G30",
+      "label": "",
+      "value": "Bright Electronics",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "C31",
+      "label": "",
+      "value": "R03",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "D31",
+      "label": "",
+      "value": "Sealed case",
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "E31",
+      "label": "",
+      "value": 68000,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "F31",
+      "label": "",
+      "value": 10,
+      "formula": ""
+    },
+    {
+      "sheet": "Catalog",
+      "address": "G31",
+      "label": "",
+      "value": "Ocean Parts",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "B3",
+      "label": "",
+      "value": "October customer orders",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "B4",
+      "label": "",
+      "value": "Sixteen synthetic orders from four fictional customers, including returns and discounts.",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "B8",
+      "label": "",
+      "value": "O-001",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C8",
+      "label": "",
+      "value": "2026-10-02T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D8",
+      "label": "",
+      "value": "Future Machines",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E8",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F8",
+      "label": "",
+      "value": 12,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G8",
+      "label": "",
+      "value": 0.03,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H8",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I8",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J8",
+      "label": "Net units per order",
+      "value": 12,
+      "formula": "=F8-H8"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K8",
+      "label": "Revenue after discounts and returns",
+      "value": 989400,
+      "formula": "=J8*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E8)*(1-G8)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B9",
+      "label": "",
+      "value": "O-002",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C9",
+      "label": "",
+      "value": "2026-10-03T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D9",
+      "label": "",
+      "value": "Future Machines",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E9",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F9",
+      "label": "",
+      "value": 9,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G9",
+      "label": "",
+      "value": 0.03,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H9",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I9",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J9",
+      "label": "Net units per order",
+      "value": 9,
+      "formula": "=F9-H9"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K9",
+      "label": "Revenue after discounts and returns",
+      "value": 1222200,
+      "formula": "=J9*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E9)*(1-G9)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B10",
+      "label": "",
+      "value": "O-003",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C10",
+      "label": "",
+      "value": "2026-10-04T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D10",
+      "label": "",
+      "value": "Future Machines",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E10",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F10",
+      "label": "",
+      "value": 8,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G10",
+      "label": "",
+      "value": 0.03,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H10",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I10",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J10",
+      "label": "Net units per order",
+      "value": 8,
+      "formula": "=F10-H10"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K10",
+      "label": "Revenue after discounts and returns",
+      "value": 1707200,
+      "formula": "=J10*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E10)*(1-G10)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B11",
+      "label": "",
+      "value": "O-004",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C11",
+      "label": "",
+      "value": "2026-10-05T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D11",
+      "label": "",
+      "value": "Future Machines",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E11",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F11",
+      "label": "",
+      "value": 7,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G11",
+      "label": "",
+      "value": 0.03,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H11",
+      "label": "",
+      "value": 1,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I11",
+      "label": "",
+      "value": "Return deducted",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J11",
+      "label": "Net units per order",
+      "value": 6,
+      "formula": "=F11-H11"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K11",
+      "label": "Revenue after discounts and returns",
+      "value": 1804200,
+      "formula": "=J11*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E11)*(1-G11)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B12",
+      "label": "",
+      "value": "O-005",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C12",
+      "label": "",
+      "value": "2026-10-06T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D12",
+      "label": "",
+      "value": "West Industries",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E12",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F12",
+      "label": "",
+      "value": 18,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G12",
+      "label": "",
+      "value": 0.05,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H12",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I12",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J12",
+      "label": "Net units per order",
+      "value": 18,
+      "formula": "=F12-H12"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K12",
+      "label": "Revenue after discounts and returns",
+      "value": 1453500,
+      "formula": "=J12*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E12)*(1-G12)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B13",
+      "label": "",
+      "value": "O-006",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C13",
+      "label": "",
+      "value": "2026-10-07T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D13",
+      "label": "",
+      "value": "West Industries",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E13",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F13",
+      "label": "",
+      "value": 14,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G13",
+      "label": "",
+      "value": 0.05,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H13",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I13",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J13",
+      "label": "Net units per order",
+      "value": 14,
+      "formula": "=F13-H13"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K13",
+      "label": "Revenue after discounts and returns",
+      "value": 1862000,
+      "formula": "=J13*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E13)*(1-G13)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B14",
+      "label": "",
+      "value": "O-007",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C14",
+      "label": "",
+      "value": "2026-10-08T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D14",
+      "label": "",
+      "value": "West Industries",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E14",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F14",
+      "label": "",
+      "value": 11,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G14",
+      "label": "",
+      "value": 0.05,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H14",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I14",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J14",
+      "label": "Net units per order",
+      "value": 11,
+      "formula": "=F14-H14"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K14",
+      "label": "Revenue after discounts and returns",
+      "value": 2299000,
+      "formula": "=J14*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E14)*(1-G14)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B15",
+      "label": "",
+      "value": "O-008",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C15",
+      "label": "",
+      "value": "2026-10-09T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D15",
+      "label": "",
+      "value": "West Industries",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E15",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F15",
+      "label": "",
+      "value": 9,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G15",
+      "label": "",
+      "value": 0.05,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H15",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I15",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J15",
+      "label": "Net units per order",
+      "value": 9,
+      "formula": "=F15-H15"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K15",
+      "label": "Revenue after discounts and returns",
+      "value": 2650500,
+      "formula": "=J15*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E15)*(1-G15)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B16",
+      "label": "",
+      "value": "O-009",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C16",
+      "label": "",
+      "value": "2026-10-10T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D16",
+      "label": "",
+      "value": "Steady Equipment",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E16",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F16",
+      "label": "",
+      "value": 15,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G16",
+      "label": "",
+      "value": 0.02,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H16",
+      "label": "",
+      "value": 1,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I16",
+      "label": "",
+      "value": "Return deducted",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J16",
+      "label": "Net units per order",
+      "value": 14,
+      "formula": "=F16-H16"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K16",
+      "label": "Revenue after discounts and returns",
+      "value": 1166200,
+      "formula": "=J16*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E16)*(1-G16)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B17",
+      "label": "",
+      "value": "O-010",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C17",
+      "label": "",
+      "value": "2026-10-11T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D17",
+      "label": "",
+      "value": "Steady Equipment",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E17",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F17",
+      "label": "",
+      "value": 10,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G17",
+      "label": "",
+      "value": 0.02,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H17",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I17",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J17",
+      "label": "Net units per order",
+      "value": 10,
+      "formula": "=F17-H17"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K17",
+      "label": "Revenue after discounts and returns",
+      "value": 1372000,
+      "formula": "=J17*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E17)*(1-G17)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B18",
+      "label": "",
+      "value": "O-011",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C18",
+      "label": "",
+      "value": "2026-10-12T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D18",
+      "label": "",
+      "value": "Steady Equipment",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E18",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F18",
+      "label": "",
+      "value": 12,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G18",
+      "label": "",
+      "value": 0.02,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H18",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I18",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J18",
+      "label": "Net units per order",
+      "value": 12,
+      "formula": "=F18-H18"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K18",
+      "label": "Revenue after discounts and returns",
+      "value": 2587200,
+      "formula": "=J18*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E18)*(1-G18)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B19",
+      "label": "",
+      "value": "O-012",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C19",
+      "label": "",
+      "value": "2026-10-13T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D19",
+      "label": "",
+      "value": "Steady Equipment",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E19",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F19",
+      "label": "",
+      "value": 8,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G19",
+      "label": "",
+      "value": 0.02,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H19",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I19",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J19",
+      "label": "Net units per order",
+      "value": 8,
+      "formula": "=F19-H19"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K19",
+      "label": "Revenue after discounts and returns",
+      "value": 2430400,
+      "formula": "=J19*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E19)*(1-G19)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B20",
+      "label": "",
+      "value": "O-013",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C20",
+      "label": "",
+      "value": "2026-10-14T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D20",
+      "label": "",
+      "value": "Grove Automation",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E20",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F20",
+      "label": "",
+      "value": 21,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G20",
+      "label": "",
+      "value": 0.04,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H20",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I20",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J20",
+      "label": "Net units per order",
+      "value": 21,
+      "formula": "=F20-H20"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K20",
+      "label": "Revenue after discounts and returns",
+      "value": 1713600,
+      "formula": "=J20*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E20)*(1-G20)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B21",
+      "label": "",
+      "value": "O-014",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C21",
+      "label": "",
+      "value": "2026-10-15T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D21",
+      "label": "",
+      "value": "Grove Automation",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E21",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F21",
+      "label": "",
+      "value": 16,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G21",
+      "label": "",
+      "value": 0.04,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H21",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I21",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J21",
+      "label": "Net units per order",
+      "value": 16,
+      "formula": "=F21-H21"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K21",
+      "label": "Revenue after discounts and returns",
+      "value": 2150400,
+      "formula": "=J21*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E21)*(1-G21)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B22",
+      "label": "",
+      "value": "O-015",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C22",
+      "label": "",
+      "value": "2026-10-16T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D22",
+      "label": "",
+      "value": "Grove Automation",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E22",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F22",
+      "label": "",
+      "value": 13,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G22",
+      "label": "",
+      "value": 0.04,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H22",
+      "label": "",
+      "value": 1,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I22",
+      "label": "",
+      "value": "Return deducted",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J22",
+      "label": "Net units per order",
+      "value": 12,
+      "formula": "=F22-H22"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K22",
+      "label": "Revenue after discounts and returns",
+      "value": 2534400,
+      "formula": "=J22*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E22)*(1-G22)"
+    },
+    {
+      "sheet": "Orders",
+      "address": "B23",
+      "label": "",
+      "value": "O-016",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "C23",
+      "label": "",
+      "value": "2026-10-17T12:00:00.000Z",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "D23",
+      "label": "",
+      "value": "Grove Automation",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "E23",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "F23",
+      "label": "",
+      "value": 11,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "G23",
+      "label": "",
+      "value": 0.04,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "H23",
+      "label": "",
+      "value": 0,
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "I23",
+      "label": "",
+      "value": "Standard order",
+      "formula": ""
+    },
+    {
+      "sheet": "Orders",
+      "address": "J23",
+      "label": "Net units per order",
+      "value": 11,
+      "formula": "=F23-H23"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K23",
+      "label": "Revenue after discounts and returns",
+      "value": 3273600,
+      "formula": "=J23*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E23)*(1-G23)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "E3",
+      "label": "",
+      "value": "Sales and collections by product",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "E4",
+      "label": "",
+      "value": "Aggregate net units and discounted order revenue by product code.",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "E9",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "I9",
+      "label": "",
+      "value": "Sensor mount",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "F9",
+      "label": "Net units by product",
+      "value": 65,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E9)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G9",
+      "label": "List price",
+      "value": 85000,
+      "formula": "='Catalog'!J9"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H9",
+      "label": "Monthly product revenue",
+      "value": 5322700,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E9)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J9",
+      "label": "Current cash collections",
+      "value": 4258160,
+      "formula": "=H9*'Assumptions'!$F$8"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K9",
+      "label": "Closing receivables",
+      "value": 1064540,
+      "formula": "=H9-J9"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L9",
+      "label": "Average selling price after discounts",
+      "value": 81887.69230769231,
+      "formula": "=H9/F9"
+    },
+    {
+      "sheet": "Sales",
+      "address": "E10",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "I10",
+      "label": "",
+      "value": "Mobile stand",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "F10",
+      "label": "Net units by product",
+      "value": 49,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E10)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G10",
+      "label": "List price",
+      "value": 140000,
+      "formula": "='Catalog'!J10"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H10",
+      "label": "Monthly product revenue",
+      "value": 6606600,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E10)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J10",
+      "label": "Current cash collections",
+      "value": 5285280,
+      "formula": "=H10*'Assumptions'!$F$8"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K10",
+      "label": "Closing receivables",
+      "value": 1321320,
+      "formula": "=H10-J10"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L10",
+      "label": "Average selling price after discounts",
+      "value": 134828.57142857142,
+      "formula": "=H10/F10"
+    },
+    {
+      "sheet": "Sales",
+      "address": "E11",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "I11",
+      "label": "",
+      "value": "Control box",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "F11",
+      "label": "Net units by product",
+      "value": 43,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E11)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G11",
+      "label": "List price",
+      "value": 220000,
+      "formula": "='Catalog'!J11"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H11",
+      "label": "Monthly product revenue",
+      "value": 9127800,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E11)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J11",
+      "label": "Current cash collections",
+      "value": 7302240,
+      "formula": "=H11*'Assumptions'!$F$8"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K11",
+      "label": "Closing receivables",
+      "value": 1825560,
+      "formula": "=H11-J11"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L11",
+      "label": "Average selling price after discounts",
+      "value": 212274.41860465117,
+      "formula": "=H11/F11"
+    },
+    {
+      "sheet": "Sales",
+      "address": "E12",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "I12",
+      "label": "",
+      "value": "Weatherproof enclosure",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "F12",
+      "label": "Net units by product",
+      "value": 34,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G12",
+      "label": "List price",
+      "value": 310000,
+      "formula": "='Catalog'!J12"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H12",
+      "label": "Monthly product revenue",
+      "value": 10158700,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J12",
+      "label": "Current cash collections",
+      "value": 8126960,
+      "formula": "=H12*'Assumptions'!$F$8"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K12",
+      "label": "Closing receivables",
+      "value": 2031740,
+      "formula": "=H12-J12"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L12",
+      "label": "Average selling price after discounts",
+      "value": 298785.29411764705,
+      "formula": "=H12/F12"
+    },
+    {
+      "sheet": "Sales",
+      "address": "P23",
+      "label": "",
+      "value": "Monthly sales and collections",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "P25",
+      "label": "",
+      "value": "Net units sold",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "P26",
+      "label": "",
+      "value": "Monthly revenue",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "P27",
+      "label": "",
+      "value": "Cash collected",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "P28",
+      "label": "",
+      "value": "Closing receivables",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "P29",
+      "label": "",
+      "value": "Average selling price",
+      "formula": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q25",
+      "label": "",
+      "value": 191,
+      "formula": "=SUM(F9:F12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q26",
+      "label": "",
+      "value": 31215800,
+      "formula": "=SUM(H9:H12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q27",
+      "label": "Total sales cash collections",
+      "value": 24972640,
+      "formula": "=SUM(J9:J12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q28",
+      "label": "",
+      "value": 6243160,
+      "formula": "=SUM(K9:K12)"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q29",
+      "label": "",
+      "value": 163433.50785340313,
+      "formula": "=Q26/Q25"
+    },
+    {
+      "sheet": "Costing",
+      "address": "B3",
+      "label": "",
+      "value": "Unit costs and cost of goods sold",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "B4",
+      "label": "",
+      "value": "Calculate unit costs, then multiply by units sold to obtain cost of goods sold.",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "B12",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "C12",
+      "label": "",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "D12",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": "='Catalog'!L9"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E12",
+      "label": "Unit price",
+      "value": 18000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C12)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F12",
+      "label": "Material per unit",
+      "value": 36000,
+      "formula": "=D12*E12"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G12",
+      "label": "Labor per unit",
+      "value": 12000,
+      "formula": "='Catalog'!M9"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H12",
+      "label": "Unit cost",
+      "value": 48000,
+      "formula": "=SUM(F12:G12)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P28",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q28",
+      "label": "Cost of units sold",
+      "value": 3120000,
+      "formula": "='Sales'!F9*H12"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R28",
+      "label": "Gross profit by product",
+      "value": 2202700,
+      "formula": "='Sales'!H9-Q28"
+    },
+    {
+      "sheet": "Costing",
+      "address": "B13",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "C13",
+      "label": "",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "D13",
+      "label": "Material units per product",
+      "value": 3,
+      "formula": "='Catalog'!L10"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E13",
+      "label": "Unit price",
+      "value": 18000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C13)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F13",
+      "label": "Material per unit",
+      "value": 54000,
+      "formula": "=D13*E13"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G13",
+      "label": "Labor per unit",
+      "value": 18000,
+      "formula": "='Catalog'!M10"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H13",
+      "label": "Unit cost",
+      "value": 72000,
+      "formula": "=SUM(F13:G13)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P29",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q29",
+      "label": "Cost of units sold",
+      "value": 3528000,
+      "formula": "='Sales'!F10*H13"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R29",
+      "label": "Gross profit by product",
+      "value": 3078600,
+      "formula": "='Sales'!H10-Q29"
+    },
+    {
+      "sheet": "Costing",
+      "address": "B14",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "C14",
+      "label": "",
+      "value": "R02",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "D14",
+      "label": "Material units per product",
+      "value": 1,
+      "formula": "='Catalog'!L11"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E14",
+      "label": "Unit price",
+      "value": 76000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C14)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F14",
+      "label": "Material per unit",
+      "value": 76000,
+      "formula": "=D14*E14"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G14",
+      "label": "Labor per unit",
+      "value": 26000,
+      "formula": "='Catalog'!M11"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H14",
+      "label": "Unit cost",
+      "value": 102000,
+      "formula": "=SUM(F14:G14)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P30",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q30",
+      "label": "Cost of units sold",
+      "value": 4386000,
+      "formula": "='Sales'!F11*H14"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R30",
+      "label": "Gross profit by product",
+      "value": 4741800,
+      "formula": "='Sales'!H11-Q30"
+    },
+    {
+      "sheet": "Costing",
+      "address": "B15",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "C15",
+      "label": "",
+      "value": "R03",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "D15",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": "='Catalog'!L12"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E15",
+      "label": "Unit price",
+      "value": 68000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C15)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F15",
+      "label": "Material per unit",
+      "value": 136000,
+      "formula": "=D15*E15"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G15",
+      "label": "Labor per unit",
+      "value": 34000,
+      "formula": "='Catalog'!M12"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H15",
+      "label": "Unit cost",
+      "value": 170000,
+      "formula": "=SUM(F15:G15)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P31",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q31",
+      "label": "Cost of units sold",
+      "value": 5780000,
+      "formula": "='Sales'!F12*H15"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R31",
+      "label": "Gross profit by product",
+      "value": 4378700,
+      "formula": "='Sales'!H12-Q31"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P25",
+      "label": "",
+      "value": "Cost of products sold",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "P35",
+      "label": "",
+      "value": "Total cost of goods sold",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "R35",
+      "label": "Total cost of goods sold",
+      "value": 16814000,
+      "formula": "=SUM(Q28:Q31)"
+    },
+    {
+      "sheet": "Costing",
+      "address": "P36",
+      "label": "",
+      "value": "Total gross profit",
+      "formula": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "R36",
+      "label": "Total gross profit",
+      "value": 14401800,
+      "formula": "=SUM(R28:R31)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J3",
+      "label": "",
+      "value": "Finished inventory and production",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J4",
+      "label": "",
+      "value": "Calculate production needed to meet sales and the safety-stock target.",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J9",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K9",
+      "label": "Opening units",
+      "value": 35,
+      "formula": "='Catalog'!O9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L9",
+      "label": "Units sold",
+      "value": 65,
+      "formula": "='Sales'!F9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M9",
+      "label": "Target safety stock",
+      "value": 20,
+      "formula": "='Catalog'!N9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N9",
+      "label": "Production needed to fill the shortfall",
+      "value": 50,
+      "formula": "=MAX(0,L9+M9-K9)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O9",
+      "label": "Closing units",
+      "value": 20,
+      "formula": "=K9+N9-L9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P9",
+      "label": "Difference from safety target",
+      "value": 0,
+      "formula": "=O9-M9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "C29",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "D29",
+      "label": "",
+      "value": "Sensor mount",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E29",
+      "label": "Closing finished units",
+      "value": 20,
+      "formula": "=O9"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F29",
+      "label": "Closing finished-goods value",
+      "value": 960000,
+      "formula": "=O9*'Costing'!H12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G29",
+      "label": "Current production labor paid",
+      "value": 600000,
+      "formula": "=N9*'Costing'!G12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J10",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K10",
+      "label": "Opening units",
+      "value": 18,
+      "formula": "='Catalog'!O10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L10",
+      "label": "Units sold",
+      "value": 49,
+      "formula": "='Sales'!F10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M10",
+      "label": "Target safety stock",
+      "value": 12,
+      "formula": "='Catalog'!N10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N10",
+      "label": "Production needed to fill the shortfall",
+      "value": 43,
+      "formula": "=MAX(0,L10+M10-K10)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O10",
+      "label": "Closing units",
+      "value": 12,
+      "formula": "=K10+N10-L10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P10",
+      "label": "Difference from safety target",
+      "value": 0,
+      "formula": "=O10-M10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "C30",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "D30",
+      "label": "",
+      "value": "Mobile stand",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E30",
+      "label": "Closing finished units",
+      "value": 12,
+      "formula": "=O10"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F30",
+      "label": "Closing finished-goods value",
+      "value": 864000,
+      "formula": "=O10*'Costing'!H13"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G30",
+      "label": "Current production labor paid",
+      "value": 774000,
+      "formula": "=N10*'Costing'!G13"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J11",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K11",
+      "label": "Opening units",
+      "value": 14,
+      "formula": "='Catalog'!O11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L11",
+      "label": "Units sold",
+      "value": 43,
+      "formula": "='Sales'!F11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M11",
+      "label": "Target safety stock",
+      "value": 10,
+      "formula": "='Catalog'!N11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N11",
+      "label": "Production needed to fill the shortfall",
+      "value": 39,
+      "formula": "=MAX(0,L11+M11-K11)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O11",
+      "label": "Closing units",
+      "value": 10,
+      "formula": "=K11+N11-L11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P11",
+      "label": "Difference from safety target",
+      "value": 0,
+      "formula": "=O11-M11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "C31",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "D31",
+      "label": "",
+      "value": "Control box",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E31",
+      "label": "Closing finished units",
+      "value": 10,
+      "formula": "=O11"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F31",
+      "label": "Closing finished-goods value",
+      "value": 1020000,
+      "formula": "=O11*'Costing'!H14"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G31",
+      "label": "Current production labor paid",
+      "value": 1014000,
+      "formula": "=N11*'Costing'!G14"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "J12",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K12",
+      "label": "Opening units",
+      "value": 10,
+      "formula": "='Catalog'!O12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L12",
+      "label": "Units sold",
+      "value": 34,
+      "formula": "='Sales'!F12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M12",
+      "label": "Target safety stock",
+      "value": 8,
+      "formula": "='Catalog'!N12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N12",
+      "label": "Production needed to fill the shortfall",
+      "value": 32,
+      "formula": "=MAX(0,L12+M12-K12)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O12",
+      "label": "Closing units",
+      "value": 8,
+      "formula": "=K12+N12-L12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P12",
+      "label": "Difference from safety target",
+      "value": 0,
+      "formula": "=O12-M12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "C32",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "D32",
+      "label": "",
+      "value": "Weatherproof enclosure",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E32",
+      "label": "Closing finished units",
+      "value": 8,
+      "formula": "=O12"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F32",
+      "label": "Closing finished-goods value",
+      "value": 1360000,
+      "formula": "=O12*'Costing'!H15"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G32",
+      "label": "Current production labor paid",
+      "value": 1088000,
+      "formula": "=N12*'Costing'!G15"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "C26",
+      "label": "",
+      "value": "Inventory value and production labor",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "D36",
+      "label": "",
+      "value": "Total",
+      "formula": ""
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F36",
+      "label": "Total closing inventory value",
+      "value": 4204000,
+      "formula": "=SUM(F29:F32)"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G36",
+      "label": "Total production labor paid",
+      "value": 3476000,
+      "formula": "=SUM(G29:G32)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C3",
+      "label": "",
+      "value": "Material purchases and cash payments",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C4",
+      "label": "",
+      "value": "Deduct opening material stock from production needs and add the safety-stock target.",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "O6",
+      "label": "",
+      "value": "Materials required for production",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "O9",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P9",
+      "label": "Material code for the product",
+      "value": "R01",
+      "formula": "='Catalog'!K9"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q9",
+      "label": "Production units",
+      "value": 50,
+      "formula": "='Inventory'!N9"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R9",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": "='Catalog'!L9"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S9",
+      "label": "Material requirement by product",
+      "value": 100,
+      "formula": "=Q9*R9"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "O10",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P10",
+      "label": "Material code for the product",
+      "value": "R01",
+      "formula": "='Catalog'!K10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q10",
+      "label": "Production units",
+      "value": 43,
+      "formula": "='Inventory'!N10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R10",
+      "label": "Material units per product",
+      "value": 3,
+      "formula": "='Catalog'!L10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S10",
+      "label": "Material requirement by product",
+      "value": 129,
+      "formula": "=Q10*R10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "O11",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P11",
+      "label": "Material code for the product",
+      "value": "R02",
+      "formula": "='Catalog'!K11"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q11",
+      "label": "Production units",
+      "value": 39,
+      "formula": "='Inventory'!N11"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R11",
+      "label": "Material units per product",
+      "value": 1,
+      "formula": "='Catalog'!L11"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S11",
+      "label": "Material requirement by product",
+      "value": 39,
+      "formula": "=Q11*R11"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "O12",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P12",
+      "label": "Material code for the product",
+      "value": "R03",
+      "formula": "='Catalog'!K12"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q12",
+      "label": "Production units",
+      "value": 32,
+      "formula": "='Inventory'!N12"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R12",
+      "label": "Material units per product",
+      "value": 2,
+      "formula": "='Catalog'!L12"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S12",
+      "label": "Material requirement by product",
+      "value": 64,
+      "formula": "=Q12*R12"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C20",
+      "label": "",
+      "value": "Purchase quantities by material",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C23",
+      "label": "",
+      "value": "R01",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "D23",
+      "label": "",
+      "value": "Aluminum frame",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E23",
+      "label": "Required units by material",
+      "value": 229,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C23)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F23",
+      "label": "Opening material units",
+      "value": 45,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C23)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G23",
+      "label": "Material safety-stock target",
+      "value": 20,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C23)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H23",
+      "label": "Material purchase units",
+      "value": 204,
+      "formula": "=MAX(0,E23+G23-F23)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I23",
+      "label": "Unit price",
+      "value": 18000,
+      "formula": "='Catalog'!E29"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J23",
+      "label": "Material purchase value",
+      "value": 3672000,
+      "formula": "=H23*I23"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K23",
+      "label": "Current material cash payment",
+      "value": 2386800,
+      "formula": "=J23*'Assumptions'!$F$10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C24",
+      "label": "",
+      "value": "R02",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "D24",
+      "label": "",
+      "value": "Control module",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E24",
+      "label": "Required units by material",
+      "value": 39,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C24)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F24",
+      "label": "Opening material units",
+      "value": 7,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C24)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G24",
+      "label": "Material safety-stock target",
+      "value": 4,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C24)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H24",
+      "label": "Material purchase units",
+      "value": 36,
+      "formula": "=MAX(0,E24+G24-F24)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I24",
+      "label": "Unit price",
+      "value": 76000,
+      "formula": "='Catalog'!E30"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J24",
+      "label": "Material purchase value",
+      "value": 2736000,
+      "formula": "=H24*I24"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K24",
+      "label": "Current material cash payment",
+      "value": 1778400,
+      "formula": "=J24*'Assumptions'!$F$10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "C25",
+      "label": "",
+      "value": "R03",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "D25",
+      "label": "",
+      "value": "Sealed case",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E25",
+      "label": "Required units by material",
+      "value": 64,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F25",
+      "label": "Opening material units",
+      "value": 12,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G25",
+      "label": "Material safety-stock target",
+      "value": 6,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H25",
+      "label": "Material purchase units",
+      "value": 58,
+      "formula": "=MAX(0,E25+G25-F25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I25",
+      "label": "Unit price",
+      "value": 68000,
+      "formula": "='Catalog'!E31"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J25",
+      "label": "Material purchase value",
+      "value": 3944000,
+      "formula": "=H25*I25"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K25",
+      "label": "Current material cash payment",
+      "value": 2563600,
+      "formula": "=J25*'Assumptions'!$F$10"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P23",
+      "label": "",
+      "value": "Total purchases and payments",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P26",
+      "label": "",
+      "value": "Total purchase value",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P27",
+      "label": "",
+      "value": "Cash paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P28",
+      "label": "",
+      "value": "Closing payables",
+      "formula": ""
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q26",
+      "label": "Total purchase value",
+      "value": 10352000,
+      "formula": "=SUM(J23:J25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q27",
+      "label": "Total current material payments",
+      "value": 6728800,
+      "formula": "=SUM(K23:K25)"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q28",
+      "label": "Closing trade payables",
+      "value": 3623200,
+      "formula": "=Q26-Q27"
+    },
+    {
+      "sheet": "Summary",
+      "address": "B3",
+      "label": "",
+      "value": "October manufacturing operations",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B4",
+      "label": "",
+      "value": "Synthetic model. Compare revenue, operating profit and closing cash. Amounts in KRW.",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B6",
+      "label": "",
+      "value": "Product sales and profit",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B8",
+      "label": "",
+      "value": "A100",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "C8",
+      "label": "Product revenue",
+      "value": 5322700,
+      "formula": "='Sales'!H9"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D8",
+      "label": "Product cost of goods sold",
+      "value": 3120000,
+      "formula": "='Costing'!Q28"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E8",
+      "label": "Product gross profit",
+      "value": 2202700,
+      "formula": "=C8-D8"
+    },
+    {
+      "sheet": "Summary",
+      "address": "B9",
+      "label": "",
+      "value": "A200",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "C9",
+      "label": "Product revenue",
+      "value": 6606600,
+      "formula": "='Sales'!H10"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D9",
+      "label": "Product cost of goods sold",
+      "value": 3528000,
+      "formula": "='Costing'!Q29"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E9",
+      "label": "Product gross profit",
+      "value": 3078600,
+      "formula": "=C9-D9"
+    },
+    {
+      "sheet": "Summary",
+      "address": "B10",
+      "label": "",
+      "value": "B100",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "C10",
+      "label": "Product revenue",
+      "value": 9127800,
+      "formula": "='Sales'!H11"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D10",
+      "label": "Product cost of goods sold",
+      "value": 4386000,
+      "formula": "='Costing'!Q30"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E10",
+      "label": "Product gross profit",
+      "value": 4741800,
+      "formula": "=C10-D10"
+    },
+    {
+      "sheet": "Summary",
+      "address": "B11",
+      "label": "",
+      "value": "B200",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "C11",
+      "label": "Product revenue",
+      "value": 10158700,
+      "formula": "='Sales'!H12"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D11",
+      "label": "Product cost of goods sold",
+      "value": 5780000,
+      "formula": "='Costing'!Q31"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E11",
+      "label": "Product gross profit",
+      "value": 4378700,
+      "formula": "=C11-D11"
+    },
+    {
+      "sheet": "Summary",
+      "address": "H6",
+      "label": "",
+      "value": "Monthly profit",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H8",
+      "label": "",
+      "value": "Monthly revenue",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H9",
+      "label": "",
+      "value": "COGS",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H10",
+      "label": "",
+      "value": "Gross profit",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H11",
+      "label": "",
+      "value": "Fixed operating costs",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H12",
+      "label": "",
+      "value": "Operating profit",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "H13",
+      "label": "",
+      "value": "Operating margin",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "K8",
+      "label": "Total revenue",
+      "value": 31215800,
+      "formula": "='Sales'!Q26"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K9",
+      "label": "Cost of products sold",
+      "value": 16814000,
+      "formula": "='Costing'!R35"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K10",
+      "label": "Gross profit",
+      "value": 14401800,
+      "formula": "=K8-K9"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K11",
+      "label": "Fixed operating costs",
+      "value": 4200000,
+      "formula": "='Assumptions'!F11"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K12",
+      "label": "Operating profit",
+      "value": 10201800,
+      "formula": "=K10-K11"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K13",
+      "label": "Operating margin",
+      "value": 0.3268152666277975,
+      "formula": "=K12/K8"
+    },
+    {
+      "sheet": "Summary",
+      "address": "M20",
+      "label": "",
+      "value": "Closing cash",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M23",
+      "label": "",
+      "value": "Opening cash",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M24",
+      "label": "",
+      "value": "Current sales collected",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M25",
+      "label": "",
+      "value": "Prior receivables collected",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M26",
+      "label": "",
+      "value": "Materials paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M27",
+      "label": "",
+      "value": "Production labor paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M28",
+      "label": "",
+      "value": "Fixed costs paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M29",
+      "label": "",
+      "value": "Capital expenditure paid",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M30",
+      "label": "",
+      "value": "Closing cash",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "M31",
+      "label": "",
+      "value": "Cash above minimum",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "P23",
+      "label": "Opening cash",
+      "value": 32000000,
+      "formula": "='Assumptions'!F13"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P24",
+      "label": "Current sales cash collections",
+      "value": 24972640,
+      "formula": "='Sales'!Q27"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P25",
+      "label": "Prior receivables collected",
+      "value": 8500000,
+      "formula": "='Assumptions'!F9"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P26",
+      "label": "Cash paid for materials",
+      "value": 6728800,
+      "formula": "='Purchasing'!Q27"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P27",
+      "label": "Current production labor",
+      "value": 3476000,
+      "formula": "='Inventory'!G36"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P28",
+      "label": "Fixed operating costs paid",
+      "value": 4200000,
+      "formula": "='Assumptions'!F11"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P29",
+      "label": "Capital expenditure cash payment",
+      "value": 2800000,
+      "formula": "='Assumptions'!F12"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P30",
+      "label": "Final output: closing cash",
+      "value": 48267840,
+      "formula": "=SUM(P23:P25)-SUM(P26:P29)"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P31",
+      "label": "Cash above minimum",
+      "value": 36267840,
+      "formula": "=P30-'Assumptions'!F14"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P35",
+      "label": "Cash status",
+      "value": "Minimum cash covered",
+      "formula": "=IF(P30>='Assumptions'!F14,\"Minimum cash covered\",\"Additional cash required\")"
+    },
+    {
+      "sheet": "Summary",
+      "address": "B22",
+      "label": "",
+      "value": "How to read the results",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B24",
+      "label": "",
+      "value": "Revenue is the order value after discounts and returns.",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B25",
+      "label": "",
+      "value": "Cost of goods sold equals units sold multiplied by unit cost.",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B26",
+      "label": "",
+      "value": "Production covers sales and additional safety stock.",
+      "formula": ""
+    },
+    {
+      "sheet": "Summary",
+      "address": "B27",
+      "label": "",
+      "value": "Closing cash reflects collection and payment timing and capital expenditure.",
+      "formula": ""
+    }
+  ],
+  "outputs": [
+    {
+      "sheet": "Orders",
+      "address": "J8",
+      "expected": 12,
+      "formula": "=F8-H8",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K8",
+      "expected": 989400,
+      "formula": "=J8*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E8)*(1-G8)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J9",
+      "expected": 9,
+      "formula": "=F9-H9",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K9",
+      "expected": 1222200,
+      "formula": "=J9*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E9)*(1-G9)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J10",
+      "expected": 8,
+      "formula": "=F10-H10",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K10",
+      "expected": 1707200,
+      "formula": "=J10*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E10)*(1-G10)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J11",
+      "expected": 6,
+      "formula": "=F11-H11",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K11",
+      "expected": 1804200,
+      "formula": "=J11*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E11)*(1-G11)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J12",
+      "expected": 18,
+      "formula": "=F12-H12",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K12",
+      "expected": 1453500,
+      "formula": "=J12*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E12)*(1-G12)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J13",
+      "expected": 14,
+      "formula": "=F13-H13",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K13",
+      "expected": 1862000,
+      "formula": "=J13*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E13)*(1-G13)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J14",
+      "expected": 11,
+      "formula": "=F14-H14",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K14",
+      "expected": 2299000,
+      "formula": "=J14*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E14)*(1-G14)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J15",
+      "expected": 9,
+      "formula": "=F15-H15",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K15",
+      "expected": 2650500,
+      "formula": "=J15*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E15)*(1-G15)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J16",
+      "expected": 14,
+      "formula": "=F16-H16",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K16",
+      "expected": 1166200,
+      "formula": "=J16*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E16)*(1-G16)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J17",
+      "expected": 10,
+      "formula": "=F17-H17",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K17",
+      "expected": 1372000,
+      "formula": "=J17*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E17)*(1-G17)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J18",
+      "expected": 12,
+      "formula": "=F18-H18",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K18",
+      "expected": 2587200,
+      "formula": "=J18*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E18)*(1-G18)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J19",
+      "expected": 8,
+      "formula": "=F19-H19",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K19",
+      "expected": 2430400,
+      "formula": "=J19*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E19)*(1-G19)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J20",
+      "expected": 21,
+      "formula": "=F20-H20",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K20",
+      "expected": 1713600,
+      "formula": "=J20*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E20)*(1-G20)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J21",
+      "expected": 16,
+      "formula": "=F21-H21",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K21",
+      "expected": 2150400,
+      "formula": "=J21*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E21)*(1-G21)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J22",
+      "expected": 12,
+      "formula": "=F22-H22",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K22",
+      "expected": 2534400,
+      "formula": "=J22*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E22)*(1-G22)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Orders",
+      "address": "J23",
+      "expected": 11,
+      "formula": "=F23-H23",
+      "label": "Net units per order"
+    },
+    {
+      "sheet": "Orders",
+      "address": "K23",
+      "expected": 3273600,
+      "formula": "=J23*SUMIFS('Catalog'!$J$9:$J$12,'Catalog'!$H$9:$H$12,E23)*(1-G23)",
+      "label": "Revenue after discounts and returns"
+    },
+    {
+      "sheet": "Sales",
+      "address": "F9",
+      "expected": 65,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E9)",
+      "label": "Net units by product"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G9",
+      "expected": 85000,
+      "formula": "='Catalog'!J9",
+      "label": "List price"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H9",
+      "expected": 5322700,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E9)",
+      "label": "Monthly product revenue"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J9",
+      "expected": 4258160,
+      "formula": "=H9*'Assumptions'!$F$8",
+      "label": "Current cash collections"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K9",
+      "expected": 1064540,
+      "formula": "=H9-J9",
+      "label": "Closing receivables"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L9",
+      "expected": 81887.69230769231,
+      "formula": "=H9/F9",
+      "label": "Average selling price after discounts"
+    },
+    {
+      "sheet": "Sales",
+      "address": "F10",
+      "expected": 49,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E10)",
+      "label": "Net units by product"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G10",
+      "expected": 140000,
+      "formula": "='Catalog'!J10",
+      "label": "List price"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H10",
+      "expected": 6606600,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E10)",
+      "label": "Monthly product revenue"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J10",
+      "expected": 5285280,
+      "formula": "=H10*'Assumptions'!$F$8",
+      "label": "Current cash collections"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K10",
+      "expected": 1321320,
+      "formula": "=H10-J10",
+      "label": "Closing receivables"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L10",
+      "expected": 134828.57142857142,
+      "formula": "=H10/F10",
+      "label": "Average selling price after discounts"
+    },
+    {
+      "sheet": "Sales",
+      "address": "F11",
+      "expected": 43,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E11)",
+      "label": "Net units by product"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G11",
+      "expected": 220000,
+      "formula": "='Catalog'!J11",
+      "label": "List price"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H11",
+      "expected": 9127800,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E11)",
+      "label": "Monthly product revenue"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J11",
+      "expected": 7302240,
+      "formula": "=H11*'Assumptions'!$F$8",
+      "label": "Current cash collections"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K11",
+      "expected": 1825560,
+      "formula": "=H11-J11",
+      "label": "Closing receivables"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L11",
+      "expected": 212274.41860465117,
+      "formula": "=H11/F11",
+      "label": "Average selling price after discounts"
+    },
+    {
+      "sheet": "Sales",
+      "address": "F12",
+      "expected": 34,
+      "formula": "=SUMIFS('Orders'!$J$8:$J$23,'Orders'!$E$8:$E$23,E12)",
+      "label": "Net units by product"
+    },
+    {
+      "sheet": "Sales",
+      "address": "G12",
+      "expected": 310000,
+      "formula": "='Catalog'!J12",
+      "label": "List price"
+    },
+    {
+      "sheet": "Sales",
+      "address": "H12",
+      "expected": 10158700,
+      "formula": "=SUMIFS('Orders'!$K$8:$K$23,'Orders'!$E$8:$E$23,E12)",
+      "label": "Monthly product revenue"
+    },
+    {
+      "sheet": "Sales",
+      "address": "J12",
+      "expected": 8126960,
+      "formula": "=H12*'Assumptions'!$F$8",
+      "label": "Current cash collections"
+    },
+    {
+      "sheet": "Sales",
+      "address": "K12",
+      "expected": 2031740,
+      "formula": "=H12-J12",
+      "label": "Closing receivables"
+    },
+    {
+      "sheet": "Sales",
+      "address": "L12",
+      "expected": 298785.29411764705,
+      "formula": "=H12/F12",
+      "label": "Average selling price after discounts"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q25",
+      "expected": 191,
+      "formula": "=SUM(F9:F12)",
+      "label": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q26",
+      "expected": 31215800,
+      "formula": "=SUM(H9:H12)",
+      "label": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q27",
+      "expected": 24972640,
+      "formula": "=SUM(J9:J12)",
+      "label": "Total sales cash collections"
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q28",
+      "expected": 6243160,
+      "formula": "=SUM(K9:K12)",
+      "label": ""
+    },
+    {
+      "sheet": "Sales",
+      "address": "Q29",
+      "expected": 163433.50785340313,
+      "formula": "=Q26/Q25",
+      "label": ""
+    },
+    {
+      "sheet": "Costing",
+      "address": "D12",
+      "expected": 2,
+      "formula": "='Catalog'!L9",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E12",
+      "expected": 18000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C12)",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F12",
+      "expected": 36000,
+      "formula": "=D12*E12",
+      "label": "Material per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G12",
+      "expected": 12000,
+      "formula": "='Catalog'!M9",
+      "label": "Labor per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H12",
+      "expected": 48000,
+      "formula": "=SUM(F12:G12)",
+      "label": "Unit cost"
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q28",
+      "expected": 3120000,
+      "formula": "='Sales'!F9*H12",
+      "label": "Cost of units sold"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R28",
+      "expected": 2202700,
+      "formula": "='Sales'!H9-Q28",
+      "label": "Gross profit by product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "D13",
+      "expected": 3,
+      "formula": "='Catalog'!L10",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E13",
+      "expected": 18000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C13)",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F13",
+      "expected": 54000,
+      "formula": "=D13*E13",
+      "label": "Material per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G13",
+      "expected": 18000,
+      "formula": "='Catalog'!M10",
+      "label": "Labor per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H13",
+      "expected": 72000,
+      "formula": "=SUM(F13:G13)",
+      "label": "Unit cost"
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q29",
+      "expected": 3528000,
+      "formula": "='Sales'!F10*H13",
+      "label": "Cost of units sold"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R29",
+      "expected": 3078600,
+      "formula": "='Sales'!H10-Q29",
+      "label": "Gross profit by product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "D14",
+      "expected": 1,
+      "formula": "='Catalog'!L11",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E14",
+      "expected": 76000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C14)",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F14",
+      "expected": 76000,
+      "formula": "=D14*E14",
+      "label": "Material per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G14",
+      "expected": 26000,
+      "formula": "='Catalog'!M11",
+      "label": "Labor per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H14",
+      "expected": 102000,
+      "formula": "=SUM(F14:G14)",
+      "label": "Unit cost"
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q30",
+      "expected": 4386000,
+      "formula": "='Sales'!F11*H14",
+      "label": "Cost of units sold"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R30",
+      "expected": 4741800,
+      "formula": "='Sales'!H11-Q30",
+      "label": "Gross profit by product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "D15",
+      "expected": 2,
+      "formula": "='Catalog'!L12",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "E15",
+      "expected": 68000,
+      "formula": "=SUMIFS('Catalog'!$E$29:$E$31,'Catalog'!$C$29:$C$31,C15)",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Costing",
+      "address": "F15",
+      "expected": 136000,
+      "formula": "=D15*E15",
+      "label": "Material per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "G15",
+      "expected": 34000,
+      "formula": "='Catalog'!M12",
+      "label": "Labor per unit"
+    },
+    {
+      "sheet": "Costing",
+      "address": "H15",
+      "expected": 170000,
+      "formula": "=SUM(F15:G15)",
+      "label": "Unit cost"
+    },
+    {
+      "sheet": "Costing",
+      "address": "Q31",
+      "expected": 5780000,
+      "formula": "='Sales'!F12*H15",
+      "label": "Cost of units sold"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R31",
+      "expected": 4378700,
+      "formula": "='Sales'!H12-Q31",
+      "label": "Gross profit by product"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R35",
+      "expected": 16814000,
+      "formula": "=SUM(Q28:Q31)",
+      "label": "Total cost of goods sold"
+    },
+    {
+      "sheet": "Costing",
+      "address": "R36",
+      "expected": 14401800,
+      "formula": "=SUM(R28:R31)",
+      "label": "Total gross profit"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K9",
+      "expected": 35,
+      "formula": "='Catalog'!O9",
+      "label": "Opening units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L9",
+      "expected": 65,
+      "formula": "='Sales'!F9",
+      "label": "Units sold"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M9",
+      "expected": 20,
+      "formula": "='Catalog'!N9",
+      "label": "Target safety stock"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N9",
+      "expected": 50,
+      "formula": "=MAX(0,L9+M9-K9)",
+      "label": "Production needed to fill the shortfall"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O9",
+      "expected": 20,
+      "formula": "=K9+N9-L9",
+      "label": "Closing units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P9",
+      "expected": 0,
+      "formula": "=O9-M9",
+      "label": "Difference from safety target"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E29",
+      "expected": 20,
+      "formula": "=O9",
+      "label": "Closing finished units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F29",
+      "expected": 960000,
+      "formula": "=O9*'Costing'!H12",
+      "label": "Closing finished-goods value"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G29",
+      "expected": 600000,
+      "formula": "=N9*'Costing'!G12",
+      "label": "Current production labor paid"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K10",
+      "expected": 18,
+      "formula": "='Catalog'!O10",
+      "label": "Opening units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L10",
+      "expected": 49,
+      "formula": "='Sales'!F10",
+      "label": "Units sold"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M10",
+      "expected": 12,
+      "formula": "='Catalog'!N10",
+      "label": "Target safety stock"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N10",
+      "expected": 43,
+      "formula": "=MAX(0,L10+M10-K10)",
+      "label": "Production needed to fill the shortfall"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O10",
+      "expected": 12,
+      "formula": "=K10+N10-L10",
+      "label": "Closing units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P10",
+      "expected": 0,
+      "formula": "=O10-M10",
+      "label": "Difference from safety target"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E30",
+      "expected": 12,
+      "formula": "=O10",
+      "label": "Closing finished units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F30",
+      "expected": 864000,
+      "formula": "=O10*'Costing'!H13",
+      "label": "Closing finished-goods value"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G30",
+      "expected": 774000,
+      "formula": "=N10*'Costing'!G13",
+      "label": "Current production labor paid"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K11",
+      "expected": 14,
+      "formula": "='Catalog'!O11",
+      "label": "Opening units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L11",
+      "expected": 43,
+      "formula": "='Sales'!F11",
+      "label": "Units sold"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M11",
+      "expected": 10,
+      "formula": "='Catalog'!N11",
+      "label": "Target safety stock"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N11",
+      "expected": 39,
+      "formula": "=MAX(0,L11+M11-K11)",
+      "label": "Production needed to fill the shortfall"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O11",
+      "expected": 10,
+      "formula": "=K11+N11-L11",
+      "label": "Closing units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P11",
+      "expected": 0,
+      "formula": "=O11-M11",
+      "label": "Difference from safety target"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E31",
+      "expected": 10,
+      "formula": "=O11",
+      "label": "Closing finished units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F31",
+      "expected": 1020000,
+      "formula": "=O11*'Costing'!H14",
+      "label": "Closing finished-goods value"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G31",
+      "expected": 1014000,
+      "formula": "=N11*'Costing'!G14",
+      "label": "Current production labor paid"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "K12",
+      "expected": 10,
+      "formula": "='Catalog'!O12",
+      "label": "Opening units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "L12",
+      "expected": 34,
+      "formula": "='Sales'!F12",
+      "label": "Units sold"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "M12",
+      "expected": 8,
+      "formula": "='Catalog'!N12",
+      "label": "Target safety stock"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "N12",
+      "expected": 32,
+      "formula": "=MAX(0,L12+M12-K12)",
+      "label": "Production needed to fill the shortfall"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "O12",
+      "expected": 8,
+      "formula": "=K12+N12-L12",
+      "label": "Closing units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "P12",
+      "expected": 0,
+      "formula": "=O12-M12",
+      "label": "Difference from safety target"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "E32",
+      "expected": 8,
+      "formula": "=O12",
+      "label": "Closing finished units"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F32",
+      "expected": 1360000,
+      "formula": "=O12*'Costing'!H15",
+      "label": "Closing finished-goods value"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G32",
+      "expected": 1088000,
+      "formula": "=N12*'Costing'!G15",
+      "label": "Current production labor paid"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "F36",
+      "expected": 4204000,
+      "formula": "=SUM(F29:F32)",
+      "label": "Total closing inventory value"
+    },
+    {
+      "sheet": "Inventory",
+      "address": "G36",
+      "expected": 3476000,
+      "formula": "=SUM(G29:G32)",
+      "label": "Total production labor paid"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P9",
+      "expected": "R01",
+      "formula": "='Catalog'!K9",
+      "label": "Material code for the product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q9",
+      "expected": 50,
+      "formula": "='Inventory'!N9",
+      "label": "Production units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R9",
+      "expected": 2,
+      "formula": "='Catalog'!L9",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S9",
+      "expected": 100,
+      "formula": "=Q9*R9",
+      "label": "Material requirement by product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P10",
+      "expected": "R01",
+      "formula": "='Catalog'!K10",
+      "label": "Material code for the product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q10",
+      "expected": 43,
+      "formula": "='Inventory'!N10",
+      "label": "Production units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R10",
+      "expected": 3,
+      "formula": "='Catalog'!L10",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S10",
+      "expected": 129,
+      "formula": "=Q10*R10",
+      "label": "Material requirement by product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P11",
+      "expected": "R02",
+      "formula": "='Catalog'!K11",
+      "label": "Material code for the product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q11",
+      "expected": 39,
+      "formula": "='Inventory'!N11",
+      "label": "Production units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R11",
+      "expected": 1,
+      "formula": "='Catalog'!L11",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S11",
+      "expected": 39,
+      "formula": "=Q11*R11",
+      "label": "Material requirement by product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "P12",
+      "expected": "R03",
+      "formula": "='Catalog'!K12",
+      "label": "Material code for the product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q12",
+      "expected": 32,
+      "formula": "='Inventory'!N12",
+      "label": "Production units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "R12",
+      "expected": 2,
+      "formula": "='Catalog'!L12",
+      "label": "Material units per product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "S12",
+      "expected": 64,
+      "formula": "=Q12*R12",
+      "label": "Material requirement by product"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E23",
+      "expected": 229,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C23)",
+      "label": "Required units by material"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F23",
+      "expected": 45,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C23)",
+      "label": "Opening material units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G23",
+      "expected": 20,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C23)",
+      "label": "Material safety-stock target"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H23",
+      "expected": 204,
+      "formula": "=MAX(0,E23+G23-F23)",
+      "label": "Material purchase units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I23",
+      "expected": 18000,
+      "formula": "='Catalog'!E29",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J23",
+      "expected": 3672000,
+      "formula": "=H23*I23",
+      "label": "Material purchase value"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K23",
+      "expected": 2386800,
+      "formula": "=J23*'Assumptions'!$F$10",
+      "label": "Current material cash payment"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E24",
+      "expected": 39,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C24)",
+      "label": "Required units by material"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F24",
+      "expected": 7,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C24)",
+      "label": "Opening material units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G24",
+      "expected": 4,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C24)",
+      "label": "Material safety-stock target"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H24",
+      "expected": 36,
+      "formula": "=MAX(0,E24+G24-F24)",
+      "label": "Material purchase units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I24",
+      "expected": 76000,
+      "formula": "='Catalog'!E30",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J24",
+      "expected": 2736000,
+      "formula": "=H24*I24",
+      "label": "Material purchase value"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K24",
+      "expected": 1778400,
+      "formula": "=J24*'Assumptions'!$F$10",
+      "label": "Current material cash payment"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "E25",
+      "expected": 64,
+      "formula": "=SUMIFS($S$9:$S$12,$P$9:$P$12,C25)",
+      "label": "Required units by material"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "F25",
+      "expected": 12,
+      "formula": "=SUMIFS('Assumptions'!$E$22:$E$24,'Assumptions'!$D$22:$D$24,C25)",
+      "label": "Opening material units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "G25",
+      "expected": 6,
+      "formula": "=SUMIFS('Assumptions'!$F$22:$F$24,'Assumptions'!$D$22:$D$24,C25)",
+      "label": "Material safety-stock target"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "H25",
+      "expected": 58,
+      "formula": "=MAX(0,E25+G25-F25)",
+      "label": "Material purchase units"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "I25",
+      "expected": 68000,
+      "formula": "='Catalog'!E31",
+      "label": "Unit price"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "J25",
+      "expected": 3944000,
+      "formula": "=H25*I25",
+      "label": "Material purchase value"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "K25",
+      "expected": 2563600,
+      "formula": "=J25*'Assumptions'!$F$10",
+      "label": "Current material cash payment"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q26",
+      "expected": 10352000,
+      "formula": "=SUM(J23:J25)",
+      "label": "Total purchase value"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q27",
+      "expected": 6728800,
+      "formula": "=SUM(K23:K25)",
+      "label": "Total current material payments"
+    },
+    {
+      "sheet": "Purchasing",
+      "address": "Q28",
+      "expected": 3623200,
+      "formula": "=Q26-Q27",
+      "label": "Closing trade payables"
+    },
+    {
+      "sheet": "Summary",
+      "address": "C8",
+      "expected": 5322700,
+      "formula": "='Sales'!H9",
+      "label": "Product revenue"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D8",
+      "expected": 3120000,
+      "formula": "='Costing'!Q28",
+      "label": "Product cost of goods sold"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E8",
+      "expected": 2202700,
+      "formula": "=C8-D8",
+      "label": "Product gross profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "C9",
+      "expected": 6606600,
+      "formula": "='Sales'!H10",
+      "label": "Product revenue"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D9",
+      "expected": 3528000,
+      "formula": "='Costing'!Q29",
+      "label": "Product cost of goods sold"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E9",
+      "expected": 3078600,
+      "formula": "=C9-D9",
+      "label": "Product gross profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "C10",
+      "expected": 9127800,
+      "formula": "='Sales'!H11",
+      "label": "Product revenue"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D10",
+      "expected": 4386000,
+      "formula": "='Costing'!Q30",
+      "label": "Product cost of goods sold"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E10",
+      "expected": 4741800,
+      "formula": "=C10-D10",
+      "label": "Product gross profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "C11",
+      "expected": 10158700,
+      "formula": "='Sales'!H12",
+      "label": "Product revenue"
+    },
+    {
+      "sheet": "Summary",
+      "address": "D11",
+      "expected": 5780000,
+      "formula": "='Costing'!Q31",
+      "label": "Product cost of goods sold"
+    },
+    {
+      "sheet": "Summary",
+      "address": "E11",
+      "expected": 4378700,
+      "formula": "=C11-D11",
+      "label": "Product gross profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K8",
+      "expected": 31215800,
+      "formula": "='Sales'!Q26",
+      "label": "Total revenue"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K9",
+      "expected": 16814000,
+      "formula": "='Costing'!R35",
+      "label": "Cost of products sold"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K10",
+      "expected": 14401800,
+      "formula": "=K8-K9",
+      "label": "Gross profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K11",
+      "expected": 4200000,
+      "formula": "='Assumptions'!F11",
+      "label": "Fixed operating costs"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K12",
+      "expected": 10201800,
+      "formula": "=K10-K11",
+      "label": "Operating profit"
+    },
+    {
+      "sheet": "Summary",
+      "address": "K13",
+      "expected": 0.3268152666277975,
+      "formula": "=K12/K8",
+      "label": "Operating margin"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P23",
+      "expected": 32000000,
+      "formula": "='Assumptions'!F13",
+      "label": "Opening cash"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P24",
+      "expected": 24972640,
+      "formula": "='Sales'!Q27",
+      "label": "Current sales cash collections"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P25",
+      "expected": 8500000,
+      "formula": "='Assumptions'!F9",
+      "label": "Prior receivables collected"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P26",
+      "expected": 6728800,
+      "formula": "='Purchasing'!Q27",
+      "label": "Cash paid for materials"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P27",
+      "expected": 3476000,
+      "formula": "='Inventory'!G36",
+      "label": "Current production labor"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P28",
+      "expected": 4200000,
+      "formula": "='Assumptions'!F11",
+      "label": "Fixed operating costs paid"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P29",
+      "expected": 2800000,
+      "formula": "='Assumptions'!F12",
+      "label": "Capital expenditure cash payment"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P30",
+      "expected": 48267840,
+      "formula": "=SUM(P23:P25)-SUM(P26:P29)",
+      "label": "Final output: closing cash"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P31",
+      "expected": 36267840,
+      "formula": "=P30-'Assumptions'!F14",
+      "label": "Cash above minimum"
+    },
+    {
+      "sheet": "Summary",
+      "address": "P35",
+      "expected": "Minimum cash covered",
+      "formula": "=IF(P30>='Assumptions'!F14,\"Minimum cash covered\",\"Additional cash required\")",
+      "label": "Cash status"
+    }
+  ],
+  "headline": {
+    "sheet": "Summary",
+    "address": "P30",
+    "title": "Closing cash",
+    "expected": 48267840
+  },
+  "metrics": {
+    "formulas": 197,
+    "orders": 16,
+    "products": 4,
+    "materials": 3,
+    "totalSales": 31215800,
+    "cogs": 16814000,
+    "gross": 14401800,
+    "profit": 10201800,
+    "cashCollect": 24972640,
+    "purchases": 10352000,
+    "purchaseCash": 6728800,
+    "labor": 3476000,
+    "inventoryValue": 4204000,
+    "endCash": 48267840
+  },
+  "demo": {
+    "title": "Where does closing cash come from?",
+    "description": "Select the result to reveal sales collections, production and purchasing outflows at their actual worksheet positions.",
+    "startSheet": "Summary",
+    "startAddress": "P30",
+    "stops": [
+      {
+        "sheet": "Summary",
+        "address": "P30",
+        "title": "Start here",
+        "body": "Closing cash is opening cash plus collections, less materials, labor, fixed costs and capital expenditure."
+      },
+      {
+        "sheet": "Sales",
+        "address": "Q27",
+        "title": "Cash coming in",
+        "body": "Apply the 80% collection rate in Assumptions to each product’s monthly sales."
+      },
+      {
+        "sheet": "Orders",
+        "address": "K8",
+        "title": "Where revenue starts",
+        "body": "Apply Catalog prices and each order’s discount to units sold after returns."
+      },
+      {
+        "sheet": "Inventory",
+        "address": "N9",
+        "title": "Orders become production",
+        "body": "Add units sold and safety stock, then deduct opening finished goods to calculate production."
+      },
+      {
+        "sheet": "Purchasing",
+        "address": "S9",
+        "title": "Production becomes materials",
+        "body": "Multiply production by each product’s material usage. Purchasing combines products that use the same material."
+      },
+      {
+        "sheet": "Purchasing",
+        "address": "H23",
+        "title": "Purchases after inventory",
+        "body": "Add the material safety target and deduct opening stock to calculate new purchases."
+      },
+      {
+        "sheet": "Purchasing",
+        "address": "Q27",
+        "title": "Purchases become cash outflows",
+        "body": "Only 65% of purchase units times unit price leaves cash this month."
+      },
+      {
+        "sheet": "Inventory",
+        "address": "G36",
+        "title": "Another cash outflow",
+        "body": "Sum production units times labor per unit. Cost of goods sold and production labor payments measure different things."
+      },
+      {
+        "sheet": "Summary",
+        "address": "P30",
+        "title": "The complete calculation",
+        "body": "Sales collections, material purchases and production labor meet in one result. The flow explains why profit and cash differ."
+      }
+    ]
+  },
+  "perturbation": {
+    "sheet": "Assumptions",
+    "address": "F8",
+    "base": 0.8,
+    "test": 0.9,
+    "outputSheet": "Summary",
+    "outputAddress": "P30",
+    "expected": 51389420
+  }
+}

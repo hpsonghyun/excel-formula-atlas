@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+node_modules/
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+~$*.xlsx
+~$*.xlsm
+*.log
+.env
+.env.*
+qa-output/
+local-output/
+*.xlsm
+*.xlsb
+.package-build-*/

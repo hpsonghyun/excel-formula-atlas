@@ -1,0 +1,65 @@
+name: Bug report
+description: Report a reproducible problem with analysis, the map, or Excel navigation.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Excel Formula Atlas. Please use fictional or anonymized data. An exported HTML map contains captured workbook data even when the original workbook is not attached.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the behavior you expected and the behavior you observed.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include which workbook option you chose and the actions you took in the map. A small fictional workbook is especially helpful.
+      placeholder: |
+        1. Run ExcelMap_Start and choose option ...
+        2. Analyze ...
+        3. Select ...
+        4. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include Excel, Windows, browser, and Excel Formula Atlas versions or the commit used.
+      placeholder: |
+        Windows:
+        Excel version and 32/64-bit:
+        Browser:
+        Excel Formula Atlas version or commit:
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did the problem occur?
+      options:
+        - VBA installation or compilation
+        - Workbook selection or analysis
+        - Formula references or worksheet positions
+        - HTML loading or rendering
+        - Map selection, search, or navigation
+        - Selecting a live Excel cell
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Error message or evidence
+      description: Include exact error text. For loading problems, include the visible stage, counts, and elapsed time. Remove private file paths and data from screenshots.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Shared data
+      options:
+        - label: I have checked that attached workbooks, HTML files, screenshots, and logs contain no private or sensitive data.
+          required: true
