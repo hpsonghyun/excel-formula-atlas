@@ -9,7 +9,7 @@
   "embeddedBridgeSha256": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
   "sourceHashes": {
     "src/navigation/navigation_bridge.ps1": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
-    "src/site/index.html": "9621ea5a27d8f8e455cc9089f496901a685073deea6b18cd4e14975c0328a2d3",
+    "src/site/index.html": "3cc2b3a37599094a09c35ef55bbd70796f937ebf46e720d4a532d1a846610751",
     "src/vba/FormulaMapMain.bas": "7b9e0c3c837695dc487cb10ba77fc2ed16b945db86edddee117eebed786fc6e5",
     "src/vba/FormulaMapParser.bas": "ed3b26345f6a5d25feed9a9ad4c26731402010f14b659be336a586c5c87adaf0",
     "src/vba/SingleFileEntry.bas": "b5d42c52f5f6319ef57fa7977f7cd9ab30c5469fe8aa2336f4b4dfb1e3906d33",

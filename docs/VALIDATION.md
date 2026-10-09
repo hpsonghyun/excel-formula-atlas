@@ -1,8 +1,10 @@
 # Validation status
 
-This is a local, unpublished **0.1.1 release candidate**. Browser and artifact checks passed. Native Excel macro execution and the complete browser-to-Excel navigation path still require a Windows Excel verification run against this exact TXT before a fully verified release.
+This record covers **release 0.1.1**. Browser and artifact checks passed, and the user reported that the core Excel functionality worked before the arrowhead correction. Full-project VBA compilation and the complete browser-to-Excel navigation path have not been independently verified against this exact TXT; they remain verification limits of this release.
 
-## Exact candidate
+Release locations: [source repository](https://github.com/hpsonghyun/excel-formula-atlas) and [introduction page](https://hpsonghyun.github.io/excel-formula-atlas/). Live publication and anonymous access are verified separately from the artifact tests recorded here.
+
+## Exact release artifacts
 
 Checked on 2026-10-09. SHA-256 identifies the bytes inspected:
 
@@ -18,7 +20,7 @@ Website downloads are byte-identical to their source artifacts. The TXT includes
 
 The shared connection geometry now places the tip just inside the target's incoming boundary and aligns the final curve tangent with source-to-target flow. Short same-sheet links no longer overshoot the target and turn back. Overlapping rectangles, contained ranges and self references use a nonzero top-entry loop. A synthetic two-sheet reproduction was compared before and after in a browser; 32 direction, adjacency and overlap cases passed finite-coordinate, target-containment and terminal-direction checks. Visible and clickable connection paths remain identical.
 
-The user reported that the prior candidate's functionality worked and requested this arrowhead correction. That report did not include an exact TXT hash or full verification checklist. The updated TXT has not been executed in desktop Excel during this patch check.
+The user reported that the previous version's core functionality worked and requested this arrowhead correction. That report did not include an exact TXT hash or full verification checklist. The updated TXT has not been executed in desktop Excel during this patch check.
 
 ## Checks completed
 
@@ -38,16 +40,16 @@ Browser checks loaded the exact self-authored HTML into an isolated browser page
 
 Loading percentages measure completed preparation items. Initial parsing remains indeterminate and may briefly block the browser; the stress runs included a parsing task of about 0.2 seconds. Progress is not a prediction of time remaining or a guarantee for every workbook size.
 
-## Verification still pending
+## Native verification limits
 
 - Paste the exact current TXT into desktop Excel, compile the module, and execute analysis using both source choices.
 - Confirm the current workbook's formulas, values, hidden-sheet state, and Excel application settings survive analysis unchanged.
 - Run the generated HTML with the local helper in an allowed Windows environment and confirm a cell click selects the exact workbook, worksheet, and range in Excel.
 - Confirm stopping the connection, source closure, and unavailable-connection messages in a real session.
 
-The available Windows Excel COM instance could not be attached to, and a single new-instance creation attempt did not return within its bounded diagnostic interval. Existing user workbooks were not accessed or closed. No Trust Center, registry, execution-policy, or organizational policy settings were changed. This environment failure is not proof that the macro succeeds or fails in Excel. Results from earlier builds are not used as proof for this TXT.
+During the 2026-10-09 checks, the available Windows Excel COM instance could not be attached to, and a single new-instance creation attempt did not return within its bounded diagnostic interval. Existing user workbooks were not accessed or closed. No Trust Center, registry, execution-policy, or organizational policy settings were changed. This environment failure is not proof that the macro succeeds or fails in Excel. Results from earlier builds are not used as proof for this TXT.
 
-## Finish the Windows check
+## How to extend the Windows verification
 
 For a manual check, use a disposable macro-hosting workbook and the fictional sample:
 
@@ -58,8 +60,8 @@ For a manual check, use a disposable macro-hosting workbook and the fictional sa
 5. Test right drag, left-area selection, line selection, language changes, and loading in that generated HTML. Run `ExcelMap_Stop` and confirm the static map remains usable while live navigation reports disconnection.
 6. Record Excel version, Windows version, TXT hash, successful checks, and any error messages. Do not include real workbook data in a public issue.
 
-An optional automation harness, `tests/windows_excel_smoke.ps1`, is prepared to check module insertion and readback, both analysis sources, HTML generation, application-state restoration, and the navigation queue-to-Excel component. Its PowerShell syntax was checked; it has **not** been executed for this candidate. Running selected procedures does not establish full-project compilation, so the manual Compile step remains separate. The harness requires the existing environment to permit VBA project automation and never enables that permission itself. It does not call the HTTP helper startup entry points or prove the complete browser connection.
+An optional automation harness, `tests/windows_excel_smoke.ps1`, is prepared to check module insertion and readback, both analysis sources, HTML generation, application-state restoration, and the navigation queue-to-Excel component. Its PowerShell syntax was checked; it has **not** been executed for this release. Running selected procedures does not establish full-project compilation, so the manual Compile step remains separate. The harness requires the existing environment to permit VBA project automation and never enables that permission itself. It does not call the HTTP helper startup entry points or prove the complete browser connection.
 
-Only mark the pending items verified after a real run against the exact candidate, and update this document with the new evidence before publication.
+Mark an item verified only after a real run against the exact release TXT, and add the resulting evidence to this record.
 
 Microsoft documents automatic `Option Explicit` insertion under [Require Variable Declaration](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/options-dialog-box) and full-project compilation under the [Debug menu](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/debug-menu).

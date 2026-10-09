@@ -4,7 +4,7 @@
 
 Paste one VBA module into desktop Excel and turn a workbook's formula references into an interactive HTML map. See where the cells sit on each worksheet, follow what feeds a result, and read the surrounding table without opening every sheet in turn.
 
-[Explore the sample map](docs/demo.html) · [Download the pasteable VBA code](dist/ExcelFormulaAtlas.txt) · [Open the project page](docs/index.html)
+[Explore the sample map](https://hpsonghyun.github.io/excel-formula-atlas/demo.html) · [Download the pasteable VBA code (.txt)](dist/ExcelFormulaAtlas.txt) · [Open the project page](https://hpsonghyun.github.io/excel-formula-atlas/)
 
 ![Excel Formula Atlas showing worksheet layouts and formula connections](docs/assets/overview.png)
 
@@ -30,9 +30,9 @@ Excel Formula Atlas keeps those relationships in their worksheet context. The re
 
 ## Try it before installing
 
-In a local copy of this repository, open [docs/index.html](docs/index.html) in your browser and launch the interactive sample, or open [the sample map](docs/demo.html) directly. The demo uses a fictional operations workbook; it does not connect to your Excel session. The project page embeds its preview, so no local web server is required.
+Open [the project page](https://hpsonghyun.github.io/excel-formula-atlas/) and launch the interactive sample, or open [the full-screen sample map](https://hpsonghyun.github.io/excel-formula-atlas/demo.html) directly. The demo uses a fictional operations workbook; it does not connect to your Excel session.
 
-GitHub displays repository HTML files as source until a website is configured. [PUBLISHING.md](PUBLISHING.md) describes the final steps for enabling the project page after publication.
+In a local copy of this repository, you can also open [docs/index.html](docs/index.html) in your browser. The project page embeds its preview, so no local web server is required.
 
 The source workbook is included as [OperationsModel.xlsx](examples/OperationsModel.xlsx). Use it to compare the map with the actual cells, or analyze it yourself after installing the macro.
 
@@ -42,7 +42,7 @@ The example contains eight synthetic worksheets and 197 formulas. Start with **`
 
 You need **desktop Microsoft Excel on Windows** and permission to run VBA macros. Excel for the web and Excel for Mac are not supported by this release. No Excel add-in, Python installation, or build tools are required to use the exported VBA code.
 
-1. Download [ExcelFormulaAtlas.txt](dist/ExcelFormulaAtlas.txt) and open it in a text editor.
+1. Download [the Excel Formula Atlas VBA code (.txt)](dist/ExcelFormulaAtlas.txt) and open it in a text editor.
 2. Open Excel. Press **Alt + F11** to open the Visual Basic editor.
 3. Choose **Insert → Module** to create a **new standard module with no existing user code**. Click inside that new module's code window, press **Ctrl + A**, and paste the entire TXT file. This replaces any automatically inserted `Option Explicit` so the module contains only the copy included in the TXT. Do not select or overwrite a module containing your existing macros.
 4. Save the workbook containing the macro as an **Excel Macro-Enabled Workbook (`.xlsm`)**, or keep the module in your existing personal macro workbook. The workbook you analyze can remain `.xlsx`.
@@ -119,7 +119,7 @@ The analyzer runs locally in Excel; no workbook upload or cloud account is requi
 
 ## Development and verification
 
-The user-facing artifact is [dist/ExcelFormulaAtlas.txt](dist/ExcelFormulaAtlas.txt). It bundles the VBA analyzer, HTML viewer, and local navigation helper into one pasteable standard module. Source files are kept separately so the distributed TXT can be rebuilt and reviewed.
+The user-facing artifact is [the pasteable VBA code (.txt)](dist/ExcelFormulaAtlas.txt). It bundles the VBA analyzer, HTML viewer, and local navigation helper into one pasteable standard module. Source files are kept separately so the distributed TXT can be rebuilt and reviewed.
 
 From the repository root, rebuild the VBA distribution and run its static contract checks with:
 
