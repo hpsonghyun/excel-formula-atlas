@@ -1,15 +1,15 @@
 {
   "version": "0.1.0",
-  "bytes": 301109,
-  "lines": 3395,
+  "bytes": 301197,
+  "lines": 3396,
   "procedures": 106,
   "maxLineLength": 366,
-  "sha256": "3b7b6794e2ec39ba05c0e7750eb6ac953d263befcb76627b1f57c7f62b7e719d",
+  "sha256": "993760e77b62626b6671e7a5840f4b0901427b284783f4baa9825720adf85601",
   "embeddedHtmlSha256": "610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745",
   "embeddedBridgeSha256": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
   "sourceHashes": {
     "src/navigation/navigation_bridge.ps1": "74888ff017f7932d4bad8023d77b86a18153eb70c38e8e85ae43b541d4d11ada",
-    "src/site/index.html": "25dd1b986765dcf686b1b21f219f769a17aa7aef370bff10fe32ab1d55d1f49b",
+    "src/site/index.html": "9621ea5a27d8f8e455cc9089f496901a685073deea6b18cd4e14975c0328a2d3",
     "src/vba/FormulaMapMain.bas": "7b9e0c3c837695dc487cb10ba77fc2ed16b945db86edddee117eebed786fc6e5",
     "src/vba/FormulaMapParser.bas": "ed3b26345f6a5d25feed9a9ad4c26731402010f14b659be336a586c5c87adaf0",
     "src/vba/SingleFileEntry.bas": "b5d42c52f5f6319ef57fa7977f7cd9ab30c5469fe8aa2336f4b4dfb1e3906d33",
@@ -17,7 +17,7 @@
     "src/vba/SpatialNavigation.bas": "58e25c40c00bc2f8daf60098ba7a82131637d4432957c19b58c339d2cc0f7c69",
     "src/vba/SpatialSnapshot.bas": "97374d05e9987c1026c0b3b9a7b1de77cabc8aef96bad8bf084556289391446e",
     "src/viewer/template.html": "610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745",
-    "scripts/build.py": "00ccddcdeb87dc7a0671325d0f35d52529e1d1e4ed1a3f5cd7bc9770b8d8ce64",
+    "scripts/build.py": "cb314916b72770010382195fa84be4603e3ad0c7480849b7a1478368b0ac77fa",
     "scripts/progress_instrumentation.py": "9b41f267ccc1930bedebeef8ecc350faa4d7f8f34ced4e00310371f1fc2f9c32",
     "VERSION": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67",
     "LICENSE": "701805daeb43228b40cf7bb26886d55123c1514446990fecd84cf65f78be71cb"

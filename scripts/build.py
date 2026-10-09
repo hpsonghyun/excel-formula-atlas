@@ -135,11 +135,12 @@ header="""' Excel Formula Atlas - single-module VBA distribution
 '
 ' QUICK START (Windows desktop Excel)
 ' 1. Open this file in a text editor. Select all and copy the entire contents.
-' 2. In Excel, press Alt+F11, choose Insert > Module, and paste into the blank module.
-'    Use one standard module, not ThisWorkbook or a worksheet code window.
-' 3. Return to Excel. Press Alt+F8, choose ExcelMap_Start, and click Run.
-' 4. Choose 1 for the current workbook, or 2 to select an Excel file.
-' 5. Choose an output folder. The macro creates a self-contained HTML map.
+' 2. In Excel, press Alt+F11 and choose Insert > Module to create a NEW module.
+' 3. In that NEW module's code window only, press Ctrl+A and paste the entire TXT.
+'    This replaces any automatic declaration line. Keep existing user modules.
+'    Use a standard module, not ThisWorkbook or a worksheet code window.
+' 4. Return to Excel. Press Alt+F8, choose ExcelMap_Start, and click Run.
+' 5. Choose 1 for the current workbook or 2 for a file, then an output folder.
 ' 6. Explore the map. Select a referenced cell and use Open in Excel to jump back.
 '
 ' EXPLORING THE MAP

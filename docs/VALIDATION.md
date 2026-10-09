@@ -8,7 +8,7 @@ Checked on 2026-10-09. SHA-256 identifies the bytes inspected:
 
 | Artifact | SHA-256 |
 | --- | --- |
-| `dist/ExcelFormulaAtlas.txt` | `3b7b6794e2ec39ba05c0e7750eb6ac953d263befcb76627b1f57c7f62b7e719d` |
+| `dist/ExcelFormulaAtlas.txt` | `993760e77b62626b6671e7a5840f4b0901427b284783f4baa9825720adf85601` |
 | `src/viewer/template.html` | `610c48739230792f65f494a80d9e2d03e02f4c28a43f90e3a4eaf9bd8d536745` |
 | `examples/OperationsModel.xlsx` | `74f390d71714e76de8d5a0a3807df78cde68e8b223a12aa2ccc73a12c37e337a` |
 
@@ -45,13 +45,15 @@ The available Windows Excel COM instance could not be attached to, and a single 
 
 For a manual check, use a disposable macro-hosting workbook and the fictional sample:
 
-1. Paste `dist/ExcelFormulaAtlas.txt` into one standard module in the Visual Basic editor. Save the host as `.xlsm`, then use **Debug → Compile VBAProject**.
+1. Create a new standard module containing no user code in the Visual Basic editor. Click inside that new module's code window, press **Ctrl+A**, and replace its contents with the entire `dist/ExcelFormulaAtlas.txt`. This replaces any automatically inserted `Option Explicit`. Preserve existing personal macro modules. Save the disposable host as `.xlsm`, select its project in Project Explorer, then use **Debug → Compile VBAProject** and confirm no compile error appears.
 2. Open `examples/OperationsModel.xlsx`, make it active, and run `ExcelMap_Start`. Choose **1 — Current workbook** and an output folder. Confirm eight sheets, 197 formulas, and `Summary!P30 = 48,267,840` in the exported map.
 3. Repeat with **2 — Choose an Excel file** using a separate copy of the fictional example. Confirm the newly opened analysis source is read-only. Compare its formulas and values before and after analysis.
 4. If the local helper starts under your existing policy, use **Open this location in Excel** and the automatic navigation option on several exported cells on different sheets. Confirm Excel's workbook name, worksheet tab, and name box agree with the map. A context-only cell is intentionally unavailable for this action.
 5. Test right drag, left-area selection, line selection, language changes, and loading in that generated HTML. Run `ExcelMap_Stop` and confirm the static map remains usable while live navigation reports disconnection.
 6. Record Excel version, Windows version, TXT hash, successful checks, and any error messages. Do not include real workbook data in a public issue.
 
-An optional automation harness, `tests/windows_excel_smoke.ps1`, checks module insertion, source selection, HTML generation, application-state restoration, and the navigation queue-to-Excel component. Its PowerShell syntax was checked; it has **not** been executed for this candidate. It requires the existing environment to permit VBA project automation and never enables that permission itself. It does not start the HTTP helper or prove the complete browser connection.
+An optional automation harness, `tests/windows_excel_smoke.ps1`, is prepared to check module insertion and readback, both analysis sources, HTML generation, application-state restoration, and the navigation queue-to-Excel component. Its PowerShell syntax was checked; it has **not** been executed for this candidate. Running selected procedures does not establish full-project compilation, so the manual Compile step remains separate. The harness requires the existing environment to permit VBA project automation and never enables that permission itself. It does not call the HTTP helper startup entry points or prove the complete browser connection.
 
 Only mark the pending items verified after a real run against the exact candidate, and update this document with the new evidence before publication.
+
+Microsoft documents automatic `Option Explicit` insertion under [Require Variable Declaration](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/options-dialog-box) and full-project compilation under the [Debug menu](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/debug-menu).

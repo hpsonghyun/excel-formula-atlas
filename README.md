@@ -44,11 +44,11 @@ You need **desktop Microsoft Excel on Windows** and permission to run VBA macros
 
 1. Download [ExcelFormulaAtlas.txt](dist/ExcelFormulaAtlas.txt) and open it in a text editor.
 2. Open Excel. Press **Alt + F11** to open the Visual Basic editor.
-3. Choose **Insert → Module**. Copy the entire TXT file and paste it into that standard module.
+3. Choose **Insert → Module** to create a **new standard module with no existing user code**. Click inside that new module's code window, press **Ctrl + A**, and paste the entire TXT file. This replaces any automatically inserted `Option Explicit` so the module contains only the copy included in the TXT. Do not select or overwrite a module containing your existing macros.
 4. Save the workbook containing the macro as an **Excel Macro-Enabled Workbook (`.xlsm`)**, or keep the module in your existing personal macro workbook. The workbook you analyze can remain `.xlsx`.
 5. Return to Excel. Press **Alt + F8**, select **`ExcelMap_Start`**, and choose **Run**.
 
-If you are replacing an earlier version, replace the previous module's entire contents. Do not paste a second copy below it; duplicate procedure names prevent VBA from compiling.
+If you are replacing an earlier version in a module dedicated entirely to Excel Formula Atlas, replace that module's entire contents. If the old module also holds your own macros, preserve it and use a fresh macro-hosting workbook for the new version. Do not paste a second copy below existing Atlas code; duplicate procedure names prevent VBA from compiling.
 
 If the workbook holding the code already has an `Auto_Close` procedure, merge the call to `FM_StopNavigation` into that procedure instead of adding another `Auto_Close`. Alternatively, install the module in a fresh macro-hosting workbook. Stop the connection before closing the code-hosting workbook or using Save As on it.
 

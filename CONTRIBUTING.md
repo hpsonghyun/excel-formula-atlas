@@ -62,6 +62,7 @@ Use a fictional sample and preserve its original copy. A check is useful when it
 
 ### VBA and reference-analysis changes
 
+- Install the distributed TXT in a newly created standard module with no existing user code: choose **Insert → Module**, click that new module's code window, press **Ctrl + A**, and paste the entire TXT. This replaces an automatically inserted `Option Explicit` instead of duplicating it. Do not overwrite an existing module containing other macros.
 - Compile and run the exported module in desktop Excel on Windows.
 - Check current-workbook selection, file-picker selection, cancellation, output creation, and a failed analysis.
 - Confirm that the source workbook is not edited and that Excel's application settings and status bar are restored after both success and failure.
