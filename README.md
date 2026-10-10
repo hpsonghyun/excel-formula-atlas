@@ -1,18 +1,24 @@
 # Excel Formula Atlas
 
-**A map for the workbook you just inherited.**
+**Trace the numbers in an unfamiliar workbook.**
 
-Paste one VBA module into desktop Excel and turn a workbook's formula references into an interactive HTML map. See where the cells sit on each worksheet, follow what feeds a result, and read the surrounding table without opening every sheet in turn.
+Inherited a spreadsheet full of cross-sheet formulas? Excel Formula Atlas turns its references into an interactive HTML map. Follow a result back to its source cells, see where they sit on each worksheet, and read their surrounding table.
 
-[Explore the sample map](https://hpsonghyun.github.io/excel-formula-atlas/demo.html) · [Download the pasteable VBA code (.txt)](dist/ExcelFormulaAtlas.txt) · [Open the project page](https://hpsonghyun.github.io/excel-formula-atlas/)
+[Try the interactive sample](https://hpsonghyun.github.io/excel-formula-atlas/demo.html) · [Get the one-paste VBA code (.txt)](dist/ExcelFormulaAtlas.txt) · [Project page](https://hpsonghyun.github.io/excel-formula-atlas/)
 
-![Excel Formula Atlas showing worksheet layouts and formula connections](docs/assets/overview.png)
+For **desktop Excel on Windows**. Paste the TXT into one new standard VBA module, run `ExcelMap_Start`, and choose the current workbook or an Excel file. The macro creates the HTML map locally. The interface starts in English and also offers Korean.
 
-## Why a map?
+[![A recorded sample walkthrough from closing cash to its sales and order inputs](docs/assets/walkthrough.gif)](https://hpsonghyun.github.io/excel-formula-atlas/#quick-tour)
 
-A formula such as `=SUM(Planning!F12:F30)` gives you an address. It does not tell you where that range sits in the planning sheet, which calculations feed it, or how it reaches the final report.
+*24-second screen recording of the fictional browser sample, without audio. [Watch the video](https://hpsonghyun.github.io/excel-formula-atlas/#quick-tour) or [explore the interactive map](https://hpsonghyun.github.io/excel-formula-atlas/demo.html).*
 
-Excel Formula Atlas keeps those relationships in their worksheet context. The result is a starting point for understanding an unfamiliar model, investigating a surprising number, and preparing a workbook handover.
+## A short route through the sample
+
+1. Open [the interactive map](https://hpsonghyun.github.io/excel-formula-atlas/demo.html) and select **`Summary!P30`**, the closing-cash result. With the default three-step depth, its flow highlights **16 upstream cells or ranges across five related sheets**.
+2. Follow the green connections to **`Sales!Q27`** for current sales collections and **`Purchasing!Q27`** for material payments. Select either cell to continue tracing its inputs and read the nearby table.
+3. Return to `Summary!P30` to see how opening cash, collections, and cash outflows meet in one calculation. Then [get the VBA code (.txt)](dist/ExcelFormulaAtlas.txt) to map your own workbook.
+
+The example is fictional. Its eight sheets and 197 formulas provide a model you can inspect without uploading or sharing your own data. If this way of tracing a workbook is useful, [star the repository](https://github.com/hpsonghyun/excel-formula-atlas) to keep it handy and follow improvements.
 
 ## What you can do
 

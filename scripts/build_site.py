@@ -15,6 +15,12 @@ def build():
     coffee = (ROOT / 'docs/assets/buy-me-a-coffee.svg').read_text(encoding='utf-8')
     coffee = coffee.replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1)
     page = page.replace(coffee_marker, coffee)
+    for marker, relative in (
+        ('__WALKTHROUGH_MP4_BASE64__', 'assets/walkthrough.mp4'),
+        ('__WALKTHROUGH_POSTER_BASE64__', 'assets/walkthrough-poster.png'),
+    ):
+        assert page.count(marker) == 1, marker
+        page = page.replace(marker, base64.b64encode((ROOT / 'docs' / relative).read_bytes()).decode('ascii'))
     embedded = set()
     def embed(match):
         relative = match.group(1)

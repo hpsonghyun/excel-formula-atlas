@@ -159,6 +159,18 @@ class PublicSiteContract(unittest.TestCase):
         self.assertEqual(count, 1)
         self.assertEqual(reconstructed.encode("utf-8"), (ROOT / "src/viewer/template.html").read_bytes())
 
+    def test_08_walkthrough_media_is_embedded_without_external_requests(self):
+        for mime, relative in (
+            ("video/mp4", "assets/walkthrough.mp4"),
+            ("image/png", "assets/walkthrough-poster.png"),
+        ):
+            match = re.search(r'data:' + re.escape(mime) + r';base64,([A-Za-z0-9+/=]+)', self.page)
+            self.assertIsNotNone(match, relative)
+            if mime == "image/png":
+                match = re.search(r'poster="data:image/png;base64,([A-Za-z0-9+/=]+)"', self.page)
+            self.assertEqual(base64.b64decode(match.group(1), validate=True), (ROOT / "docs" / relative).read_bytes())
+        self.assertNotIn("__WALKTHROUGH_", self.page)
+
     def test_07_site_rebuild_is_byte_identical_in_an_isolated_checkout(self):
         isolated = ROOT / (".site-build-" + uuid.uuid4().hex)
         isolated.mkdir()
