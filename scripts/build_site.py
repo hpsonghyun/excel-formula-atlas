@@ -10,6 +10,11 @@ def build():
     marker = '__FORMULA_ATLAS_DEMO_BASE64__'
     assert page.count(marker) == 1
     page = page.replace(marker, base64.b64encode((ROOT / 'docs/demo.html').read_bytes()).decode('ascii'))
+    coffee_marker = '__BUY_ME_A_COFFEE_SVG__'
+    assert page.count(coffee_marker) == 2
+    coffee = (ROOT / 'docs/assets/buy-me-a-coffee.svg').read_text(encoding='utf-8')
+    coffee = coffee.replace('<svg ', '<svg aria-hidden="true" focusable="false" ', 1)
+    page = page.replace(coffee_marker, coffee)
     embedded = set()
     def embed(match):
         relative = match.group(1)

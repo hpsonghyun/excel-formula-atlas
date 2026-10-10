@@ -144,7 +144,9 @@ For sensitive security reports, see [SECURITY.md](SECURITY.md). For the final pu
 
 ## Buy me a coffee
 
-If this helped you untangle a workbook, consider [buying me a coffee](https://buymeacoffee.com/namsonghyun2). It supports the time spent improving formula coverage, testing real-world workbooks, and making the map easier to use. Optional support never unlocks features.
+If this helped you untangle a workbook, consider supporting its development. It supports the time spent improving formula coverage, testing real-world workbooks, and making the map easier to use. Optional support never unlocks features.
+
+<a href="https://buymeacoffee.com/namsonghyun2"><img src="docs/assets/buy-me-a-coffee.svg" alt="Buy Me a Coffee — official brand button" width="185"></a>
 
 A useful bug report, an anonymized example, or a note about how the map helped is very welcome too.
 
